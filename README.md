@@ -72,11 +72,11 @@ Cada integrante del equipo creará ramas separadas para desarrollar las funciona
 ---
 
 ## Tecnologías:
-- [**Maven**](https://maven.apache.org/)
-- [**Java 17**](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
-- [**Spring Boot 3.1.0**](https://spring.io/projects/spring-boot)
-- [**Hibernate**](https://hibernate.org/)
-- [**MySQL**](https://www.mysql.com/)
+[![Maven](https://skillicons.dev/icons?i=maven)](https://maven.apache.org/)
+[![Java](https://skillicons.dev/icons?i=java)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+[![Spring](https://skillicons.dev/icons?i=spring)](https://spring.io/projects/spring-boot)
+[![Hibernate](https://skillicons.dev/icons?i=hibernate)](https://hibernate.org/)
+[![MySQL](https://skillicons.dev/icons?i=mysql)](https://www.mysql.com/)
 
 ## Instalación y configuración del proyecto
 Debe verificarse que se tenga instalado Java JDK 17 y compilar el proyecto antes de correr el servidor.
