@@ -54,15 +54,43 @@ a. Ingresar en la sección de reportes y solicitar información de diferentes
 eventos en el sistema.
 5. Cerrar sesión.
 ---
+## Estructura de ramas
+- **main:**
+Rama principal del proyecto y representa la versión estable del código.
+
+- **development:**
+Rama intermedia donde se integran los cambios de las diferentes funcionalidades desarrolladas por el equipo. Sirve como un entorno de prueba en conjunto antes de llevar los cambios a la rama **main**.
+
+Cada integrante del equipo creará ramas separadas para desarrollar las funcionalidades asignadas. Estas ramas se basarán en la rama **development** y se fusionarán con ella una vez que las funcionalidades estén completas y probadas.
+
 ## Integrantes:
 - [Newman Barbara.](https://github.com/BarbaraNewman)
 - [Ramos Nayla María.](https://github.com/naylamarie)
 - [Robles Flores Sergio.](https://github.com/ImNotThrasher)
 - [Spinazzola Luciano Nicolas.](https://github.com/LucianoSpinazzola)
 
-## Tecnologías:
-- **Maven**
-- **Java 17**
-- **Spring Boot 3.1.0**
-- **MySQL**
+---
 
+## Tecnologías:
+- [**Maven**](https://maven.apache.org/)
+- [**Java 17**](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+- [**Spring Boot 3.1.0**](https://spring.io/projects/spring-boot)
+- [**Hibernate**](https://hibernate.org/)
+- [**MySQL**](https://www.mysql.com/)
+
+## Instalación y configuración del proyecto
+Debe verificarse que se tenga instalado Java JDK 17 y compilar el proyecto antes de correr el servidor.
+
+### Verificación de la versión de Java:
+<code>java -version</code>
+
+### Compilación del proyecto con Maven:
+Eliminando archivos antiguos: <code>mvn clean install</code>
+<br>Solo compilación: <code>mvn install</code>
+
+
+### Ejecución del servidor Spring Boot:
+<code>mvn spring-boot:run</code>
+
+### Detener ejecución del servidor Spring Boot:
+Presionar las teclas <code>Ctrl + c</code>
