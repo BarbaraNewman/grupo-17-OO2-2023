@@ -63,11 +63,16 @@ Rama intermedia donde se integran los cambios de las diferentes funcionalidades 
 
 Cada integrante del equipo creará ramas separadas para desarrollar las funcionalidades asignadas. Estas ramas se basarán en la rama **development** y se fusionarán con ella una vez que las funcionalidades estén completas y probadas.
 
+
 ## Integrantes:
 - [Newman Barbara.](https://github.com/BarbaraNewman)
 - [Ramos Nayla María.](https://github.com/naylamarie)
 - [Robles Flores Sergio.](https://github.com/ImNotThrasher)
 - [Spinazzola Luciano Nicolas.](https://github.com/LucianoSpinazzola)
+
+
+## Diagrama de Clases
+<img src="Diagrama de Clases - Grupo 17.png"  title="Diagrama de Clases UML">
 
 ---
 
