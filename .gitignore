@@ -34,3 +34,7 @@ build/
 
 # Eclipse-related files
 bin/
+
+# draw.io
+*.dtmp
+*.bkp
