@@ -19,8 +19,8 @@ De forma simple, se entiende por Smart City a un lugar en donde diversos disposi
 
 ### Se espera que el TP cuente con los siguientes puntos:
 
-1. Definir una solución de IOT por integrante.
-<br>Ejemplos de soluciones posibles:
+1. Definir una solución de IOT por integrante.  
+Ejemplos de soluciones posibles:
     - Estacionamiento inteligente (Smart Parking). Sensores o cámaras que
     detectan lugares libres y ocupados por autos.
     - Alumbrado inteligente. Sensores de luz que prenden o apagan alumbrado
@@ -45,9 +45,9 @@ Dicha sección debe funcionar como reportes, se tiene que poder hacer filtros va
 
 ### Se espera que en la plataforma como mínimo pueda:
 1. Iniciar sesión como Administrador o Auditor.
-2. Como Administrador
-    <br>a. Dar de alta un tipo de dispositivo.
-    <br>b. Dar de alta un dispositivo de un tipo en particular.
+2. Como Administrador  
+    a. Dar de alta un tipo de dispositivo.  
+    b. Dar de alta un dispositivo de un tipo en particular.
 3. Registrar un evento de un dispositivo específico.
 4. Como Auditor
 a. Ingresar en la sección de reportes y solicitar información de diferentes
@@ -84,18 +84,24 @@ Cada integrante del equipo creará ramas separadas para desarrollar las funciona
 [![MySQL](https://skillicons.dev/icons?i=mysql)](https://www.mysql.com/)
 
 ## Instalación y configuración del proyecto
-Debe verificarse que se tenga instalado Java JDK 17 y compilar el proyecto antes de correr el servidor.
+Debe verificarse que se tenga instalado Java JDK 17 y compilar el proyecto previo a correr el servidor.
 
 ### Verificación de la versión de Java:
-<code>java -version</code>
+`java -version`
+
+
+### Creacion de la base de datos:
+Ejecutar el script `\create-schema.sql`
+
+### Configuracion de variables de entorno:
+Modificar las propiedades `url:` `username:` y `password:` en `\src\main\resources\application.yml`.
 
 ### Compilación del proyecto con Maven:
-Eliminando archivos antiguos: <code>mvn clean install</code>
-<br>Solo compilación: <code>mvn install</code>
-
+Eliminando archivos antiguos: `mvn clean install`  
+Solo compilación: `mvn install`
 
 ### Ejecución del servidor Spring Boot:
-<code>mvn spring-boot:run</code>
+`mvn spring-boot:run`
 
 ### Detener ejecución del servidor Spring Boot:
-Presionar las teclas <code>Ctrl + c</code>
+Presionar las teclas `Ctrl + c`
