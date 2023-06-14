@@ -16,3 +16,6 @@ spring:
       static-locations: classpath:/static/
   thymeleaf:
     cache: false
+  devtools:
+    livereload:
+      enabled: true
