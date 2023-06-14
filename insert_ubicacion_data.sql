@@ -1,0 +1,33 @@
+USE `grupo-17-oo2-2023`;
+
+INSERT INTO ubicacion (id_ubicacion, descripcion, nombre)
+VALUES
+(1, 'Edificio', 'José Hernández'),
+(2, 'Comedor', 'Universitario Padre Mujica'),
+(3, 'Estudio de Grabación', 'Enrique Santos Discépolo'),
+(4, 'Edificio', 'Lola Mora'),
+(5, 'Edificio', 'Hernández Arregui'),
+(6, 'Gimnasio Comunitario', 'Gatica'),
+(7, 'Quincho', 'Roberto Fontanarrosa'),
+(8, 'Edificio', 'Juana Manso'),
+(9, 'Edificio', 'Inadi'),
+(10, 'Campo de deportes ', 'Delfo Cabrera'),
+(11, 'Edificio', 'Irma Laciar de Carrica'),
+(12, 'Edificio', 'Leonardo Werthein'),
+(13, 'Edificio', 'Oscar Varsavsky'),
+(14, 'Jardin Maternal', 'Azucena Villaflor'),
+(15, 'Edificio', 'Héctor Oesterheld'),
+(16, 'Cine', 'Tita Merello'),
+(17, 'Edificio', 'Casa del Estudiante'),
+(18, 'Edificio', 'Lisandro de la Torre'),
+(19, 'Edificio', 'Macedonio Fernández'),
+(20, 'Edificio', 'Raúl Scalabrini Ortiz'),
+(21, 'Edificio', 'Arturo Jauretche'),
+(22, 'Edificio', 'Manuel Ugarte'),
+(23, 'Edificio', 'Homero Manzi'),
+(24, 'Edificio', 'Ortega Peña'),
+(25, 'Edificio', 'Leopoldo Marechal'),
+(26, 'Edificio', 'Juana Azurduy'),
+(27, 'Edificio', 'Pascual Contursi'),
+(28, 'Edificio', 'Néstor Kirchner'),
+(29, 'Aulario', 'Remedios del Valle');
