@@ -20,5 +20,5 @@ public class ViewRouteHelper {
 	/////////////////
 	// REDIRECTION //
 	public final static String ROUTE_INDEX = "/index";
-	public final static String UBICACION_ROOT = "/index";
+	public final static String UBICACION_ROOT = "/ubicacion";
 }
