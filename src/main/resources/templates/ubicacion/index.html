@@ -90,7 +90,7 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            DataTable Example
+                            Ubicaciones DataTable Example
                         </div>
                         <div class="card-body">
                             <table id="datatablesSimple">
@@ -99,6 +99,7 @@
                                         <th>ID</th>
                                         <th>Nombre</th>
                                         <th>Descripcion</th>
+                                        <th>Accion</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -106,6 +107,7 @@
                                         <th>ID</th>
                                         <th>Nombre</th>
                                         <th>Descripcion</th>
+                                        <th>Accion</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -113,6 +115,9 @@
 										<td th:text="${ubicacion.idUbicacion}"></td>
 								        <td th:text="${ubicacion.nombre}"></td>
 								        <td th:text="${ubicacion.descripcion}"></td>
+								        <td>
+								            <a th:href="@{/ubicacion/{idUbicacion}(idUbicacion=${ubicacion.idUbicacion})}">Ver Detalles</a>
+                                        </td>
 								    </tr>
 								</tbody>
                             </table>
