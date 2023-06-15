@@ -3,7 +3,7 @@ USE `grupo-17-oo2-2023`;
 INSERT INTO ubicacion (id_ubicacion, descripcion, nombre)
 VALUES
 (1, 'Edificio', 'José Hernández'),
-(2, 'Comedor', 'Universitario Padre Mujica'),
+(2, 'Comedor Universitario', 'Padre Mujica'),
 (3, 'Estudio de Grabación', 'Enrique Santos Discépolo'),
 (4, 'Edificio', 'Lola Mora'),
 (5, 'Edificio', 'Hernández Arregui'),
