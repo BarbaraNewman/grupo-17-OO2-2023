@@ -65,10 +65,10 @@ Cada integrante del equipo creará ramas separadas para desarrollar las funciona
 
 
 ## Integrantes:
-- [Newman Barbara.](https://github.com/BarbaraNewman)
-- [Ramos Nayla María.](https://github.com/naylamarie)
-- [Robles Flores Sergio.](https://github.com/ImNotThrasher)
-- [Spinazzola Luciano Nicolas.](https://github.com/LucianoSpinazzola)
+- [Newman Barbara. [Parking]](https://github.com/BarbaraNewman)
+- [Ramos Nayla María. [Iluminacion]](https://github.com/naylamarie)
+- [Robles Flores Sergio. [Recolectores]](https://github.com/ImNotThrasher)
+- [Spinazzola Luciano Nicolas. [Sanitarios]](https://github.com/LucianoSpinazzola)
 
 
 ## Diagrama de Clases
