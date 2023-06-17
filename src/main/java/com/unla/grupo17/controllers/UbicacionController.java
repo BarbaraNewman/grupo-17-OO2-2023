@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,6 +38,7 @@ public class UbicacionController {
 		return mAV;
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/new")
 	public ModelAndView create() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.UBICACION_NEW);
@@ -44,6 +46,7 @@ public class UbicacionController {
 		return mAV;
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("ubicacion") Ubicacion ubicacion) {
 		ubicacionService.insertOrUpdate(ubicacion);
@@ -57,6 +60,7 @@ public class UbicacionController {
 		return mAV;
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("ubicacion") Ubicacion ubicacion) {
 		if (ubicacion.getIdUbicacion() > 0) {
@@ -67,6 +71,7 @@ public class UbicacionController {
 		return new RedirectView(ViewRouteHelper.UBICACION_ROOT);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/delete/{idUbicacion}")
 	public RedirectView delete(@PathVariable("idUbicacion") int idUbicacion) {
 		ubicacionService.remove(idUbicacion);
