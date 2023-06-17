@@ -86,7 +86,7 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="dispositivo/contenedor">Contenedores</a>
+                                <a class="nav-link" href="/">Contenedores</a>
                             </nav>
                         </div>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
@@ -108,9 +108,15 @@
                             </nav>
                         </div>
 
-                        <a class="nav-link" th:href="@{/ubicacion}">
+                        <a class="nav-link active" th:href="@{/ubicacion}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Ubicaciones
+                        </a>
+
+                        <div class="sb-sidenav-menu-heading">Interface</div>
+                        <a class="nav-link" th:href="@{/ubicacion/new}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Nuevo
                         </a>
 
                     </div>
@@ -135,38 +141,58 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            Dispositivos
+                            Contenedores DataTable Example
                         </div>
                         <div class="card-body">
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>ID</th>
                                         <th>Nombre</th>
-                                        <th>Fecha de Creacion</th>
-                                        <th>Fecha de Actualizacion</th>
+                                        <th>Ubicación</th>
+                                        <th>Fecha de Creación</th>
+                                        <th>Fecha de Actualización</th>
                                         <th>Activo</th>
+                                        
+                                        <th>Reciclable</th>
+                                        <th>Capacidad</th>
+                                        <th>Lleno</th>
+                                        
+                                        <th>Accion</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>ID</th>
                                         <th>Nombre</th>
-                                        <th>Fecha de Creacion</th>
+                                        <th>Ubicacion</th>
+                                        <th>Fecha de Creación</th>
+                                        <th>Fecha de Actualización</th>
                                         <th>Activo</th>
+                                        
+                                        <th>Reciclable</th>
+                                        <th>Capacidad</th>
+                                        <th>Lleno</th>
+                                        
+                                        <th>Accion</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr th:each="dispositivo : ${dispositivos}">
-                                        <td th:text="${dispositivo.idDispositivo}"></td>
-                                        <td th:text="${dispositivo.nombre}"></td>
-                                        <td th:text="${dispositivo.fechaCreacion}"></td>
-                                        <td th:text="${dispositivo.fechaActualizacion}"></td>
-                                        <td th:text="${dispositivo.activo}"></td>
+                                    <tr th:each="contenedor : ${contenedores}">
+                                        <td th:text="${contenedor.idDispositivo}"></td>
+                                        <td th:text="${contenedor.nombre}"></td>
+                                        <td th:text="${contenedor.ubicacion.nombre}"></td>
+                                        <td th:text="${contenedor.fechaCreacion}"></td>
+                                        <td th:text="${contenedor.fechaActualizacion}"></td>
+                                        <td th:text="${contenedor.activo}"></td>
+                                        
+                                        <td th:text="${contenedor.reciclable}"></td>
+                                        <td th:text="${contenedor.capacidad}"></td>
+                                        <td th:text="${contenedor.lleno}"></td>
                                         <td>
-                                            <a href="/dispositivos/1">Ver Detalles</a>
-                                            <a href="/dispositivos/1/editar">Editar</a>
-                                            <a href="/dispositivos/1/eliminar">Eliminar</a>
+                                            <a
+                                                th:href="@{/dispositivo/contenedor/{idDispositivo}(idDispositivo=${contenedor.idDispositivo})}">Ver
+                                                Detalles</a>
                                         </td>
                                     </tr>
                                 </tbody>
