@@ -108,9 +108,15 @@
                             </nav>
                         </div>
 
-                        <a class="nav-link" th:href="@{/ubicacion}">
+                        <a class="nav-link active" th:href="@{/ubicacion}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Ubicaciones
+                        </a>
+
+                        <div class="sb-sidenav-menu-heading">Interface</div>
+                        <a class="nav-link" th:href="@{/ubicacion/new}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Nuevo
                         </a>
 
                     </div>
@@ -135,38 +141,35 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            Dispositivos
+                            Ubicaciones DataTable Example
                         </div>
                         <div class="card-body">
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>ID</th>
                                         <th>Nombre</th>
-                                        <th>Fecha de Creacion</th>
-                                        <th>Fecha de Actualizacion</th>
-                                        <th>Activo</th>
+                                        <th>Descripcion</th>
+                                        <th>Accion</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>ID</th>
                                         <th>Nombre</th>
-                                        <th>Fecha de Creacion</th>
-                                        <th>Activo</th>
+                                        <th>Descripcion</th>
+                                        <th>Accion</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr th:each="dispositivo : ${dispositivos}">
-                                        <td th:text="${dispositivo.idDispositivo}"></td>
-                                        <td th:text="${dispositivo.nombre}"></td>
-                                        <td th:text="${dispositivo.fechaCreacion}"></td>
-                                        <td th:text="${dispositivo.fechaActualizacion}"></td>
-                                        <td th:text="${dispositivo.activo}"></td>
+                                    <tr th:each="ubicacion : ${ubicaciones}">
+                                        <td th:text="${ubicacion.idUbicacion}"></td>
+                                        <td th:text="${ubicacion.nombre}"></td>
+                                        <td th:text="${ubicacion.descripcion}"></td>
                                         <td>
-                                            <a href="/dispositivos/1">Ver Detalles</a>
-                                            <a href="/dispositivos/1/editar">Editar</a>
-                                            <a href="/dispositivos/1/eliminar">Eliminar</a>
+                                            <a
+                                                th:href="@{/ubicacion/{idUbicacion}(idUbicacion=${ubicacion.idUbicacion})}">Ver
+                                                Detalles</a>
                                         </td>
                                     </tr>
                                 </tbody>

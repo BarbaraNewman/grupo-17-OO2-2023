@@ -15,8 +15,8 @@ public class HomeController {
 	// Si se agrega .html al final, funciona igual
 	@GetMapping({ "/index", "/index.html" })
 	public ModelAndView index() {
-		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.INDEX); // Vista
-		return modelAndView;
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.INDEX); // Vista
+		return mAV;
 	}
 
 	// Redireccion al entrar a la direccion del server
