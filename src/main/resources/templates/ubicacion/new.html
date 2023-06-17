@@ -51,7 +51,7 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="index">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
@@ -71,16 +71,16 @@
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
 
-                   
+
 
                     <form action="#" th:action="@{/ubicacion/create}" th:object="${ubicacion}" method="post">
                         <p>Nombre: <input type="text" th:field="*{nombre}" /></p>
                         <p>Descripcion: <input type="text" th:field="*{descripcion}" /></p>
                         <input class="btn btn-primary" type="submit" value="Crear Ubicacion" />
                     </form>
-                        
-                        
-                        
+
+
+
 
 
                 </div>

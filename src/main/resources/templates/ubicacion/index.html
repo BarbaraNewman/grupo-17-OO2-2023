@@ -7,16 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <title>UNLa IoT</title>
+
+    <!-- Estilos de Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Estilos para Datatables -->
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <!-- Estilos de Template -->
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed">
+
+    <!-- Encabezado -->
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="/index">UNLa IoT</a>
+        <a class="navbar-brand ps-3" href="index.html">UNLa IoT</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
@@ -29,7 +37,8 @@
                         class="fas fa-search"></i></button>
             </div>
         </form>
-        <!-- Navbar-->
+
+        <!-- Options Navbar -->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
@@ -40,11 +49,13 @@
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    <li><a class="dropdown-item" th:href="@{/user/logout}">Logout</a></li>
                 </ul>
             </li>
         </ul>
     </nav>
+
+    <!-- SideNavbar -->
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -55,38 +66,78 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
-                        
-                    	<div class="sb-sidenav-menu-heading">Interface</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-sidenav-menu-heading">Interface</div>
+
+                        <a class="nav-link" th:href="@{/}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Auditoria
+                        </a>
+                        <a class="nav-link" th:href="@{/}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Eventos
+                        </a>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Administrar
+                            Dispositivos
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/ubicacion/new">Nuevo</a>
+                                <a class="nav-link" href="/">Contenedores</a>
                             </nav>
                         </div>
-                    
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/">Iluminacion</a>
+                            </nav>
+                        </div>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/">Parking</a>
+                            </nav>
+                        </div>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/">Sanitarios</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link active" th:href="@{/ubicacion}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Ubicaciones
+                        </a>
+
+                        <div class="sb-sidenav-menu-heading">Interface</div>
+                        <a class="nav-link" th:href="@{/ubicacion/new}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Nuevo
+                        </a>
+
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Logged in as:</div>
-                    Start Bootstrap
+                    <span th:text="${username}"></span>
                 </div>
             </nav>
         </div>
         <div id="layoutSidenav_content">
+
+            <!-- Main Content-->
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Ubicaciones</h1>
+                    <h1 class="mt-4">Dashboard</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
-                    
-                    
-                    
 
+                    <!-- Seccion Card Tabla -->
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
@@ -111,27 +162,25 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-								    <tr th:each="ubicacion : ${ubicaciones}">
-										<td th:text="${ubicacion.idUbicacion}"></td>
-								        <td th:text="${ubicacion.nombre}"></td>
-								        <td th:text="${ubicacion.descripcion}"></td>
-								        <td>
-								            <a th:href="@{/ubicacion/{idUbicacion}(idUbicacion=${ubicacion.idUbicacion})}">Ver Detalles</a>
+                                    <tr th:each="ubicacion : ${ubicaciones}">
+                                        <td th:text="${ubicacion.idUbicacion}"></td>
+                                        <td th:text="${ubicacion.nombre}"></td>
+                                        <td th:text="${ubicacion.descripcion}"></td>
+                                        <td>
+                                            <a
+                                                th:href="@{/ubicacion/{idUbicacion}(idUbicacion=${ubicacion.idUbicacion})}">Ver
+                                                Detalles</a>
                                         </td>
-								    </tr>
-								</tbody>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
-                    
-                    
-                    
-                    
-
-
 
                 </div>
             </main>
+
+            <!-- Footer -->
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
@@ -146,12 +195,17 @@
             </footer>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+    <!-- Template JS -->
+    <script src="/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="/assets/demo/chart-area-demo.js"></script>
+    <script src="/assets/demo/chart-bar-demo.js"></script>
+    <!-- Datatables JS -->
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="/js/datatables-simple-demo.js"></script>
