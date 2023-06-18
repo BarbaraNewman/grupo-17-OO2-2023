@@ -23,7 +23,7 @@
 
     <!-- Encabezado -->
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand ps-3" href="/index">UNLa IoT</a>
+        <a class="navbar-brand ps-3" th:href="@{/index}">UNLa IoT</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
@@ -67,7 +67,7 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="/index">
+                        <a class="nav-link" th:href="@{/index}">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
@@ -93,7 +93,7 @@
                         <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link active" href="dispositivo/contenedor">Contenedores</a>
+                                <a class="nav-link active" th:href="@{/dispositivo/contenedor}">Contenedores</a>
                             </nav>
                         </div>
                         <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
@@ -105,13 +105,13 @@
                         <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/">Parking</a>
+                                <a class="nav-link" h:href="/">Parking</a>
                             </nav>
                         </div>
                         <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/">Sanitarios</a>
+                                <a class="nav-link" h:href="/">Sanitarios</a>
                             </nav>
                         </div>
 
