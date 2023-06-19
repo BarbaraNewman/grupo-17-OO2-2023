@@ -16,6 +16,11 @@ public class ViewRouteHelper {
 	// DISPOSITIVO
 	public final static String DISPOSITIVO_INDEX = "/dispositivo/index";
 
+	// ALUMBRADO
+	public final static String DISPOSITIVO_ALUMBRADO_INDEX = "/alumbrado/index";
+	public final static String DISPOSITIVO_ALUMBRADO_NEW = "/alumbrado/new";
+	public final static String DISPOSITIVO_ALUMBRADO_UPDATE = "/alumbrado/update";
+
 	// CONTENEDOR
 	public final static String DISPOSITIVO_CONTENEDOR_INDEX = "/contenedor/index";
 	public final static String DISPOSITIVO_CONTENEDOR_NEW = "/contenedor/new";
