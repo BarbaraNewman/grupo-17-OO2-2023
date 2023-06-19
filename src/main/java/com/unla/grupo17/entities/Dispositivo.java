@@ -19,22 +19,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Dispositivo {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDispositivo;
 	private String nombre;
-	
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idUbicacion", nullable=true)
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idUbicacion", nullable = true)
 	private Ubicacion ubicacion;
-	
+
 	@CreationTimestamp
 	private LocalDateTime fechaCreacion;
-	
+
 	@UpdateTimestamp
 	private LocalDateTime fechaActualizacion;
 	private boolean activo;
+
 }
