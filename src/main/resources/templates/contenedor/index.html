@@ -90,32 +90,32 @@
                             Dispositivos
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                        <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" th:href="@{/dispositivo/contenedor}">Contenedores</a>
+                                <a class="nav-link active" th:href="@{/dispositivo/contenedor}">Contenedores</a>
                             </nav>
                         </div>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                        <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="/">Alumbrado</a>
                             </nav>
                         </div>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                        <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" h:href="/">Parking</a>
                             </nav>
                         </div>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                        <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" h:href="/">Sanitarios</a>
                             </nav>
                         </div>
 
-                        <a class="nav-link active" th:href="@{/ubicacion}">
+                        <a class="nav-link" th:href="@{/ubicacion}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Ubicaciones
                         </a>
@@ -144,7 +144,7 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            Ubicaciones DataTable Example
+                            Contenedores DataTable Example
                         </div>
                         <div class="card-body">
                             <table id="datatablesSimple">
@@ -152,7 +152,15 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Nombre</th>
-                                        <th>Descripcion</th>
+                                        <th>Ubicación</th>
+                                        <th>Fecha de Creación</th>
+                                        <th>Fecha de Actualización</th>
+                                        <th>Activo</th>
+
+                                        <th>Reciclable</th>
+                                        <th>Capacidad</th>
+                                        <th>Lleno</th>
+
                                         <th>Accion</th>
                                     </tr>
                                 </thead>
@@ -160,28 +168,44 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Nombre</th>
-                                        <th>Descripcion</th>
+                                        <th>Ubicacion</th>
+                                        <th>Fecha de Creación</th>
+                                        <th>Fecha de Actualización</th>
+                                        <th>Activo</th>
+
+                                        <th>Reciclable</th>
+                                        <th>Capacidad</th>
+                                        <th>Lleno</th>
+
                                         <th>Accion</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr th:each="ubicacion : ${ubicaciones}">
-                                        <td th:text="${ubicacion.idUbicacion}"></td>
-                                        <td th:text="${ubicacion.nombre}"></td>
-                                        <td th:text="${ubicacion.descripcion}"></td>
+                                    <tr th:each="contenedor : ${contenedores}">
+                                        <td th:text="${contenedor.idDispositivo}"></td>
+                                        <td th:text="${contenedor.nombre}"></td>
+                                        <td th:text="${contenedor.ubicacion.nombre}"></td>
+                                        <td th:text="${contenedor.fechaCreacion}"></td>
+                                        <td th:text="${contenedor.fechaActualizacion}"></td>
+                                        <td th:text="${contenedor.activo}"></td>
+
+                                        <td th:text="${contenedor.reciclable}"></td>
+                                        <td th:text="${contenedor.capacidad}"></td>
+                                        <td th:text="${contenedor.lleno}"></td>
                                         <td>
                                             <a
-                                                th:href="@{/ubicacion/{idUbicacion}(idUbicacion=${ubicacion.idUbicacion})}">Ver
+                                                th:href="@{/dispositivo/contenedor/{idDispositivo}(idDispositivo=${contenedor.idDispositivo})}">Ver
                                                 Detalles</a>
                                         </td>
                                     </tr>
                                 </tbody>
+
                             </table>
 
                             <!-- Acciones -->
                             <div class="actions-section">
                                 <hr class="my-4">
-                                <a class="btn btn-primary" th:href="@{/ubicacion/new}">
+                                <a class="btn btn-primary" th:href="@{/contenedor/new}">
                                     Nuevo
                                 </a>
                             </div>

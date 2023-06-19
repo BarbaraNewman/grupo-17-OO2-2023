@@ -78,7 +78,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Auditoria
                         </a>
-                        <a class="nav-link" th:href="@{/evento}">
+                        <a class="nav-link active" th:href="@{/}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Eventos
                         </a>
@@ -115,7 +115,7 @@
                             </nav>
                         </div>
 
-                        <a class="nav-link active" th:href="@{/ubicacion}">
+                        <a class="nav-link" th:href="@{/ubicacion}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Ubicaciones
                         </a>
@@ -144,47 +144,42 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            Ubicaciones DataTable Example
+                            Eventos DataTable Example
                         </div>
                         <div class="card-body">
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Nombre</th>
                                         <th>Descripcion</th>
-                                        <th>Accion</th>
+                                        <th>Fecha y Hora de Registro</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Nombre</th>
                                         <th>Descripcion</th>
-                                        <th>Accion</th>
+                                        <th>Fecha y Hora de Registro</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr th:each="ubicacion : ${ubicaciones}">
-                                        <td th:text="${ubicacion.idUbicacion}"></td>
-                                        <td th:text="${ubicacion.nombre}"></td>
-                                        <td th:text="${ubicacion.descripcion}"></td>
+                                    <tr th:each="evento : ${eventos}">
+                                        <td th:text="${evento.idEvento}"></td>
+                                        <td th:text="${evento.descripcion}"></td>
+                                        <td th:text="${evento.fechaHoraRegistro}"></td>
                                         <td>
                                             <a
-                                                th:href="@{/ubicacion/{idUbicacion}(idUbicacion=${ubicacion.idUbicacion})}">Ver
+                                                th:href="@{/evento/{idEvento}(idEvento=${evento.idEvento})}">Ver
                                                 Detalles</a>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
 
-                            <!-- Acciones -->
-                            <div class="actions-section">
-                                <hr class="my-4">
-                                <a class="btn btn-primary" th:href="@{/ubicacion/new}">
-                                    Nuevo
-                                </a>
-                            </div>
+
+
 
                         </div>
 
