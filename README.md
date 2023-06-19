@@ -66,9 +66,12 @@ Cada integrante del equipo creará ramas separadas para desarrollar las funciona
 
 ## Integrantes:
 - [Newman Barbara. [Parking]](https://github.com/BarbaraNewman)
-- [Ramos Nayla María. [Iluminacion]](https://github.com/naylamarie)
+- [Ramos Nayla María. [Alumbrado]](https://github.com/naylamarie)
 - [Robles Flores Sergio. [Recolectores]](https://github.com/ImNotThrasher)
 - [Spinazzola Luciano Nicolas. [Sanitarios]](https://github.com/LucianoSpinazzola)
+
+### Videos de demostración  :
+- *Proximamente*
 
 
 ## Diagrama de Clases
@@ -101,7 +104,7 @@ Debe verificarse que se tenga instalado Java JDK 17 y compilar el proyecto previ
 
 ### Creacion de la base de datos:
 Ejecutar el script `\create-schema.sql`  
-Los datos de prueba se deben cargar despues ejecutar el servidor.
+Los datos de prueba se deben cargar despues de la compilación.
 
 ### Configuracion de variables de entorno:
 En `\src\main\resources\application.yml`  
