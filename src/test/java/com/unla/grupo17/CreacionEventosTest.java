@@ -9,39 +9,33 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.unla.grupo17.entities.Evento;
 import com.unla.grupo17.entities.SensorContenedor;
-import com.unla.grupo17.services.implementation.DispositivoService;
-import com.unla.grupo17.services.implementation.EventoService;
-import com.unla.grupo17.services.implementation.SensorContenedorService;
+import com.unla.grupo17.services.IEventoService;
+import com.unla.grupo17.services.ISensorContenedorService;
 
 @SpringBootTest
 class CreacionEventosTest {
 
 	@Autowired
-	private DispositivoService dispositivoService;
+	private ISensorContenedorService sensorContenedorService;
 
 	@Autowired
-	private SensorContenedorService sensorContenedorService;
-
-	@Autowired
-	private EventoService eventoService;
+	private IEventoService eventoService;
 
 	// @Test
 	// void contextLoads() {}
 
 	@Test
 	public void leerMetricas() {
+		// Lectura y creacion de Eventos para los Contenedores
 		List<SensorContenedor> metricasSensorContenedor = sensorContenedorService.getAll();
-
-		for (SensorContenedor metricaSensor : metricasSensorContenedor) {
-			// Realiza las operaciones deseadas con cada registro de métrica
-			System.out.println(metricaSensor.toString());
+		for (SensorContenedor sensorContenedor : metricasSensorContenedor) {
 			Evento evento = new Evento();
-			evento.setDescripcion(metricaSensor.toString());
-			///////////////////////////
-			evento.setDispositivo(null);
-			///////////////////////////
 			evento.setFechaHoraRegistro(LocalDateTime.now());
+			evento.setDescripcion(sensorContenedor.toString());
+			evento.setDispositivo(sensorContenedor.getContenedor());
 			eventoService.insertOrUpdate(evento);
+
+			///////////////////////////////////
 
 		}
 	}
