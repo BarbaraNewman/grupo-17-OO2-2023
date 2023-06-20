@@ -66,9 +66,12 @@ Cada integrante del equipo creará ramas separadas para desarrollar las funciona
 
 ## Integrantes:
 - [Newman Barbara. [Parking]](https://github.com/BarbaraNewman)
-- [Ramos Nayla María. [Iluminacion]](https://github.com/naylamarie)
+- [Ramos Nayla María. [Alumbrado]](https://github.com/naylamarie)
 - [Robles Flores Sergio. [Recolectores]](https://github.com/ImNotThrasher)
 - [Spinazzola Luciano Nicolas. [Sanitarios]](https://github.com/LucianoSpinazzola)
+
+### Videos de demostración  :
+- *Proximamente*
 
 
 ## Diagrama de Clases
@@ -84,6 +87,15 @@ Cada integrante del equipo creará ramas separadas para desarrollar las funciona
 [![MySQL](https://skillicons.dev/icons?i=mysql)](https://www.mysql.com/)
 
 ## Instalación y configuración del proyecto
+- Verificar Dependencias
+- Crear Base de Datos
+- Configurar Variables de Entorno
+- Compilar  proyecto
+- Ejecutar servidor
+- Cargar datos de prueba
+
+## Instrucciones
+
 Debe verificarse que se tenga instalado Java JDK 17 y compilar el proyecto previo a correr el servidor.
 
 ### Verificación de la versión de Java:
@@ -91,10 +103,13 @@ Debe verificarse que se tenga instalado Java JDK 17 y compilar el proyecto previ
 
 
 ### Creacion de la base de datos:
-Ejecutar el script `\create-schema.sql`
+Ejecutar el script `\create-schema.sql`  
+Los datos de prueba se deben cargar despues de la compilación.
 
 ### Configuracion de variables de entorno:
-Modificar las propiedades `url:` `username:` y `password:` en `\src\main\resources\application.yml`.
+En `\src\main\resources\application.yml`  
+Modificar las propiedades `url:` `username:` y `password:`
+
 
 ### Compilación del proyecto con Maven:
 Eliminando archivos antiguos: `mvn clean install`  

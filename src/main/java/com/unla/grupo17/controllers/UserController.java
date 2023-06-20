@@ -18,6 +18,11 @@ public class UserController {
 		return ViewRouteHelper.USER_LOGIN;
 	}
 
+	@GetMapping("/logout")
+	public String logout(Model model) {
+		return ViewRouteHelper.USER_LOGIN;
+	}
+
 	@GetMapping("/loginsuccess")
 	public String loginCheck() {
 		return "redirect:/index";
