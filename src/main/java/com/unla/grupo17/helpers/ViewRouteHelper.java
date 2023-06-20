@@ -21,6 +21,9 @@ public class ViewRouteHelper {
 	public final static String DISPOSITIVO_CONTENEDOR_NEW = "/contenedor/new";
 	public final static String DISPOSITIVO_CONTENEDOR_UPDATE = "/contenedor/update";
 
+	// DISPOSITIVO
+	public final static String SANITARIO_INDEX = "/dispositivo/sanitario/index";
+
 	// USER
 	public final static String USER_LOGIN = "user/login";
 	public final static String USER_LOGOUT = "user/logout";
