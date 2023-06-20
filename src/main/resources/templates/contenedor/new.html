@@ -76,6 +76,7 @@
                     <form action="#" th:action="@{/dispositivo/contenedor/create}" th:object="${contenedor}" method="post">
                         <p>Nombre: <input type="text" th:field="*{nombre}" /></p>
     					<p>Ubicación: <input type="text" th:field="*{ubicacion.idUbicacion}" /></p>
+                        <p>Activo: <input type="checkbox" th:field="*{activo}" /></p>
                         
                         <p>Reciclable: <input type="checkbox" th:field="*{reciclable}" /></p>
 					    <p>Capacidad: <input type="number" th:field="*{capacidad}" /></p>
