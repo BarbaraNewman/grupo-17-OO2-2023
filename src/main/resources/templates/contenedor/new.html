@@ -66,19 +66,21 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Ubicaciones</h1>
+                    <h1 class="mt-4">Contenedor</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
 
 
 
-                    <form action="#" th:action="@{/ubicacion/create}" th:object="${ubicacion}" method="post">
+                    <form action="#" th:action="@{/dispositivo/contenedor/create}" th:object="${contenedor}" method="post">
                         <p>Nombre: <input type="text" th:field="*{nombre}" /></p>
-                        <p>Descripcion: <input type="text" th:field="*{descripcion}" /></p>
-                        <input class="btn btn-primary" type="submit" value="Crear Ubicacion" />
+    					<p>Ubicación: <input type="text" th:field="*{ubicacion.idUbicacion}" /></p>
+                        
+                        <p>Reciclable: <input type="checkbox" th:field="*{reciclable}" /></p>
+					    <p>Capacidad: <input type="number" th:field="*{capacidad}" /></p>
+                        <input class="btn btn-primary" type="submit" value="Crear Contenedor" />
                     </form>
-
 
 
 

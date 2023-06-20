@@ -10,4 +10,6 @@ public interface IContenedorService {
 
 	public abstract Contenedor findByIdDispositivo(int idDispositivo);
 
+	public Contenedor insertOrUpdate(Contenedor contenedor);
+
 }

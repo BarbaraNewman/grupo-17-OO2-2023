@@ -27,4 +27,8 @@ public class ContenedorService implements IContenedorService {
 		return contenedorRepository.findByIdDispositivo(idDispositivo);
 	}
 
+	public Contenedor insertOrUpdate(Contenedor contenedor) {
+		return contenedorRepository.save(contenedor);
+	}
+
 }
