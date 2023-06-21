@@ -12,6 +12,7 @@ public class ViewRouteHelper {
 
 	// EVENTO
 	public final static String EVENTO_INDEX = "/evento/index";
+	public final static String EVENTO_DETAILS = "/evento/details";
 
 	// DISPOSITIVO
 	public final static String DISPOSITIVO_INDEX = "/dispositivo/index";

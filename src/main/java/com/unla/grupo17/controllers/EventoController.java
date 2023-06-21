@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -52,6 +53,15 @@ public class EventoController {
 		cronCreateEventosSensorContenedor.leerMetricasCrearEventos();
 
 		return new RedirectView(ViewRouteHelper.EVENTO_ROOT);
+	}
+
+	@GetMapping("/{idEvento}")
+	public ModelAndView get(@PathVariable("idEvento") int idEvento) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.EVENTO_DETAILS);
+
+		mAV.addObject("username", getLoggedUsername());
+		mAV.addObject("evento", eventoService.findByIdEvento(idEvento));
+		return mAV;
 	}
 
 }
