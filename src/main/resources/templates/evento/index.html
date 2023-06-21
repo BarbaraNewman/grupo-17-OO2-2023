@@ -159,8 +159,8 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Fecha de Registro</th>
-										<th>Dispositivo</th>
                                         <th>Descripción</th>
+										<th>Dispositivo</th>
                                         <th>Ubicación</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -169,8 +169,8 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Fecha de Registro</th>
-										<th>Dispositivo</th>
                                         <th>Descripción</th>
+										<th>Dispositivo</th>
                                         <th>Ubicación</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -181,8 +181,8 @@
                                         <td
                                             th:text="${#temporals.format(evento.fechaHoraRegistro, 'dd/MM/yy HH:mm:ss')}">
                                         </td>
-                                        <td th:text="${evento.dispositivo.nombre}"></td>
                                         <td th:text="${evento.descripcion}"></td>
+                                        <td th:text="${evento.dispositivo.nombre}"></td>
                                         <td th:text="${evento.dispositivo.ubicacion.nombre}"></td>
 
                                         <td>
