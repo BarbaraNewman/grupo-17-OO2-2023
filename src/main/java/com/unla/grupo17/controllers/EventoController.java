@@ -44,12 +44,6 @@ public class EventoController {
 
 		return mAV;
 	}
-	/*
-	 * @GetMapping("/solicitarMetricas") public ModelAndView create() {
-	 * cronCreateEventosSensorContenedor.leerMetricasCrearEventos();
-	 * 
-	 * return new ModelAndView(ViewRouteHelper.EVENTO_ROOT); }
-	 */
 
 	@GetMapping("/solicitarMetricas")
 	public RedirectView create() {
