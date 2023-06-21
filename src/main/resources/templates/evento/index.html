@@ -158,27 +158,33 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Descripcion</th>
-                                        <th>Fecha y Hora de Registro</th>
+                                        <th>Fecha de Registro</th>
+										<th>Dispositivo</th>
+                                        <th>Descripción</th>
+                                        <th>Ubicación</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Descripcion</th>
-                                        <th>Fecha y Hora de Registro</th>
+                                        <th>Fecha de Registro</th>
+										<th>Dispositivo</th>
+                                        <th>Descripción</th>
+                                        <th>Ubicación</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
                                     <tr th:each="evento : ${eventos}">
                                         <td th:text="${evento.idEvento}"></td>
-                                        <td th:text="${evento.descripcion}"></td>
                                         <td
                                             th:text="${#temporals.format(evento.fechaHoraRegistro, 'dd/MM/yy HH:mm:ss')}">
                                         </td>
-                                        </td>
+                                        <td th:text="${evento.dispositivo.nombre}"></td>
+                                        <td th:text="${evento.descripcion}"></td>
+                                        <td th:text="${evento.dispositivo.ubicacion.nombre}"></td>
+
                                         <td>
                                             <a th:href="@{/evento/{idEvento}(idEvento=${evento.idEvento})}">Ver
                                                 Detalles</a>
