@@ -1,6 +1,8 @@
 package com.unla.grupo17.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,9 +12,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Alumbrado extends Dispositivo {
+	
+	@Column(columnDefinition = "boolean default false")
 	private boolean estadoLuces;
-	private long tiempoEncendido;
-	private long tiempoApagado;
-	private boolean umbralLuminosidad;
+	
+	@NotBlank(message = "El control de alumbrado no puede estar en blanco")
+    private String controlDeAlumbrado;
 
 }
