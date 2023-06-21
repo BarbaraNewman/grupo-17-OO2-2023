@@ -192,7 +192,8 @@
                                         <td th:text="${contenedor.idDispositivo}"></td>
                                         <td th:text="${contenedor.nombre}"></td>
                                         <td th:text="${contenedor.ubicacion.nombre}"></td>
-                                        <td th:text="${#temporals.format(contenedor.fechaCreacion, 'dd/MM/yy HH:mm:ss')}">
+                                        <td
+                                            th:text="${#temporals.format(contenedor.fechaCreacion, 'dd/MM/yy HH:mm:ss')}">
                                         </td>
                                         <td
                                             th:text="${#temporals.format(contenedor.fechaActualizacion, 'dd/MM/yy HH:mm:ss')}">
@@ -216,10 +217,12 @@
                             <!-- Acciones -->
                             <div class="actions-section">
                                 <hr class="my-4">
-                                <a class="btn btn-primary" th:href="@{/dispositivo/contenedor/new}">
+                                <a class="btn btn-primary" th:href="@{/dispositivo/contenedor/new}"
+                                    th:classappend="${username != 'admin'} ? 'disabled'">
                                     Nuevo
                                 </a>
                             </div>
+
 
                         </div>
 

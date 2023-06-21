@@ -151,7 +151,7 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            Ubicaciones DataTable Example
+                            Ubicaciones
                         </div>
                         <div class="card-body">
                             <table id="datatablesSimple">
@@ -188,7 +188,8 @@
                             <!-- Acciones -->
                             <div class="actions-section">
                                 <hr class="my-4">
-                                <a class="btn btn-primary" th:href="@{/ubicacion/new}">
+                                <a class="btn btn-primary" th:href="@{/ubicacion/new}"
+                                    th:classappend="${username != 'admin'} ? 'disabled'">
                                     Nuevo
                                 </a>
                             </div>
