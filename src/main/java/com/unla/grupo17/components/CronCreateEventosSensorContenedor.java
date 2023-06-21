@@ -9,11 +9,15 @@ import org.springframework.stereotype.Component;
 
 import com.unla.grupo17.entities.Evento;
 import com.unla.grupo17.entities.SensorContenedor;
+import com.unla.grupo17.services.IContenedorService;
 import com.unla.grupo17.services.IEventoService;
 import com.unla.grupo17.services.ISensorContenedorService;
 
 @Component
 public class CronCreateEventosSensorContenedor {
+
+	@Autowired
+	private IContenedorService contenedorService;
 
 	@Autowired
 	private ISensorContenedorService sensorContenedorService;
@@ -37,6 +41,14 @@ public class CronCreateEventosSensorContenedor {
 			evento.setDispositivo(sensorContenedor.getContenedor());
 			evento.setDescripcion(sensorContenedor.toString());
 
+			// Se actualiza el estado del contenedor en base a la lectura del sensor
+			if (sensorContenedor.getNivelLlenado() == 100)
+				sensorContenedor.getContenedor().setLleno(true);
+			else
+				sensorContenedor.getContenedor().setLleno(false);
+			contenedorService.insertOrUpdate(sensorContenedor.getContenedor());
+
+			// Creacion del evento
 			eventoService.insertOrUpdate(evento);
 		}
 
