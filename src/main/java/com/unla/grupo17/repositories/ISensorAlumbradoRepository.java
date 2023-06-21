@@ -12,5 +12,5 @@ import com.unla.grupo17.entities.SensorAlumbrado;
 public interface ISensorAlumbradoRepository extends JpaRepository<SensorAlumbrado, Serializable> {
 
 	public abstract SensorAlumbrado findByIdSensor(int idSensor);
-
+	
 }
