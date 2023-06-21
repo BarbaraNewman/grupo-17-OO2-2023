@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.unla.grupo17.entities.SensorAlumbrado;
-import com.unla.grupo17.repositories.IAlumbradoRepository;
 import com.unla.grupo17.repositories.ISensorAlumbradoRepository;
 import com.unla.grupo17.services.ISensorAlumbradoService;
 
