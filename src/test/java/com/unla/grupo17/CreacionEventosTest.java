@@ -29,12 +29,30 @@ class CreacionEventosTest {
 
 			Evento evento = new Evento();
 
+			/*
+			 * Encendido (true): Luminosidad de 20 indica la necesidad de encender las
+			 * luces. Si la medición de luminosidad es menor o igual a ese valor, las luces
+			 * se encenderán.
+			 * 
+			 * Apagado (false): Luminosidad de 80 indica suficiente iluminación natural. Si
+			 * la medición de luminosidad es mayor o igual a ese valor, las luces se
+			 * apagarán.
+			 */
 			if (sensorAlumbrado.getUmbralLuminosidad() <= 20) {
 				sensorAlumbrado.getAlumbrado().setEstadoLuces(true);
 			} else if (sensorAlumbrado.getUmbralLuminosidad() >= 80) {
 				sensorAlumbrado.getAlumbrado().setEstadoLuces(false);
 			}
 
+			/*
+			 * "Funcionando normalmente": Si las horas acumuladas están dentro de un rango
+			 * aceptable, indica que las luces están funcionando correctamente y no se
+			 * requieren acciones adicionales.
+			 * 
+			 * "Mantenimiento requerido": Si las horas acumuladas superan un límite
+			 * establecido, indica que es necesario realizar un mantenimiento en las luces,
+			 * como reemplazo de componentes o verificación de su estado general.
+			 */
 			if (sensorAlumbrado.getTiempoApagadoEncendido() == 11
 					|| sensorAlumbrado.getTiempoApagadoEncendido() == 13) {
 				sensorAlumbrado.getAlumbrado().setControlDeAlumbrado("Funcionando Correctamente");
