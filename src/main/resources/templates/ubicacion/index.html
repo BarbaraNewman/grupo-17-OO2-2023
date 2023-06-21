@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8" />
@@ -23,7 +23,8 @@
 
     <!-- Encabezado -->
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand ps-3" th:href="@{/index}">UNLa IoT</a>
+        <a class="navbar-brand ps-3" th:href="@{/index}" aria-label="Página de inicio de UNLa IoT">UNLa IoT</a>
+
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
@@ -43,7 +44,10 @@
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    aria-expanded="false" aria-label="Menú de usuario">
+                    <i class="fas fa-user fa-fw"></i>
+                </a>
+
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <!-- 
                     <li><a class="dropdown-item" href="#!">Settings</a></li>
@@ -53,7 +57,8 @@
                     -->
             </li>
             <form th:action="@{/logout}" method="post">
-                <input class="dropdown-item" style="cursor: pointer" type="submit" value="Logout" />
+                <input class="dropdown-item" style="cursor: pointer" type="submit" value="Cerrar sesión"
+                    aria-label="Cerrar sesión" />
             </form>
         </ul>
         </li>
@@ -66,13 +71,13 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <div class="sb-sidenav-menu-heading">General</div>
                         <a class="nav-link" th:href="@{/index}">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
+                            Inicio
                         </a>
 
-                        <div class="sb-sidenav-menu-heading">Interface</div>
+                        <div class="sb-sidenav-menu-heading">Interfaces de Control</div>
 
                         <a class="nav-link" th:href="@{/}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
@@ -124,7 +129,7 @@
                 </div>
                 <!-- Footer Nav-->
                 <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
+                    <div class="small">Usuario:</div>
                     <span th:text="${username}"></span>
                 </div>
             </nav>
@@ -135,9 +140,11 @@
             <!-- Main Content-->
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Dashboard</h1>
+                    <h1 class="mt-4">Ubicaciones</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item active"
+                            th:text="${'Fecha: ' + #temporals.format(#temporals.createNow(), 'dd/MM/yyyy HH:mm:ss')}">
+                        </li>
                     </ol>
 
                     <!-- Seccion Card Tabla -->
@@ -195,7 +202,7 @@
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                        <div class="text-muted">Copyright &copy; UNLa 2023</div>
                         <div>
                             <a href="#">Privacy Policy</a>
                             &middot;
@@ -214,8 +221,6 @@
     <!-- Template JS -->
     <script src="/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="/assets/demo/chart-area-demo.js"></script>
-    <script src="/assets/demo/chart-bar-demo.js"></script>
     <!-- Datatables JS -->
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
