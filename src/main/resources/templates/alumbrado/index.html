@@ -154,11 +154,8 @@
                                         <th>Fecha de Actualización</th>
                                         <th>Activo</th>
                                         
-                                        <th>Estado Luces</th>
-                                        <th>Tiempo Encendido</th>
-                                        <th>Tiempo Apagado</th>
-                                        <th>Umbral Luminosidad</th>
-                                        
+                                        <th>Estado de las Luces</th>
+                                        <th>Control de Alumbrado</th> 
                                         <th>Accion</th>
                                     </tr>
                                 </thead>
@@ -171,11 +168,8 @@
                                         <th>Fecha de Actualización</th>
                                         <th>Activo</th>
                                         
-                                        <th>Estado Luces</th>
-                                        <th>Tiempo encendido</th>
-                                        <th>Tiempo Apagado</th>
-                                        <th>Umbral Luminosidad</th>
-                                        
+                                        <th>Estado de las Luces</th>
+                                        <th>Control de Alumbrado</th>
                                         <th>Accion</th>
                                     </tr>
                                 </tfoot>
@@ -189,9 +183,7 @@
                                         <td th:text="${alumbrado.activo}"></td>
                                         
                                         <td th:text="${alumbrado.estadoLuces}"></td>
-                                        <td th:text="${alumbrado.tiempoEncendido}"></td>
-                                        <td th:text="${alumbrado.tiempoApagado}"></td>
-                                        <td th:text="${alumbrado.umbralLuminosidad}"></td>
+                                        <td th:text="${alumbrado.controlDeAlumbrado}"></td>
                                         <td>
                                             <a
                                                 th:href="@{/dispositivo/alumbrado/{idDispositivo}(idDispositivo=${alumbrado.idDispositivo})}">Ver
