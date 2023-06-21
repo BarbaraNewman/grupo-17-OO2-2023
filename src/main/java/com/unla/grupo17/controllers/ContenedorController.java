@@ -57,6 +57,12 @@ public class ContenedorController {
 	@GetMapping("/new")
 	public ModelAndView create() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_NEW);
+
+		// Obtencion del nombre de Usuario
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		mAV.addObject("username", username);
+
 		mAV.addObject("contenedor", new Contenedor());
 		mAV.addObject("ubicaciones", ubicacionService.getAll());
 
@@ -68,6 +74,12 @@ public class ContenedorController {
 	public ModelAndView create(@Valid @ModelAttribute("contenedor") Contenedor contenedor, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_NEW);
+
+		// Obtencion del nombre de Usuario
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		mAV.addObject("username", username);
+
 		mAV.addObject("ubicaciones", ubicacionService.getAll());
 
 		if (bindingResult.hasErrors()) {

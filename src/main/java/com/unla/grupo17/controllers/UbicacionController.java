@@ -53,6 +53,12 @@ public class UbicacionController {
 	@GetMapping("/new")
 	public ModelAndView create() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.UBICACION_NEW);
+
+		// Obtencion del nombre de Usuario
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		mAV.addObject("username", username);
+
 		mAV.addObject("ubicacion", new Ubicacion());
 		return mAV;
 	}
@@ -62,6 +68,11 @@ public class UbicacionController {
 	public ModelAndView create(@Valid @ModelAttribute("ubicacion") Ubicacion ubicacion, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.UBICACION_NEW);
+
+		// Obtencion del nombre de Usuario
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		mAV.addObject("username", username);
 
 		if (bindingResult.hasErrors()) {
 			mAV.addObject("error", "Ha ocurrido un error en la validación");
@@ -77,6 +88,12 @@ public class UbicacionController {
 	@GetMapping("/{idUbicacion}")
 	public ModelAndView get(@PathVariable("idUbicacion") int idUbicacion) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.UBICACION_UPDATE);
+
+		// Obtencion del nombre de Usuario
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		mAV.addObject("username", username);
+
 		mAV.addObject("ubicacion", ubicacionService.findByIdUbicacion(idUbicacion));
 		return mAV;
 	}
