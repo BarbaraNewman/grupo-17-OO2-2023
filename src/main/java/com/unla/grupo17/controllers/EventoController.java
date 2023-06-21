@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import com.unla.grupo17.components.CronCreateEventosSensorContenedor;
 import com.unla.grupo17.entities.Evento;
 import com.unla.grupo17.helpers.ViewRouteHelper;
 import com.unla.grupo17.services.IEventoService;
@@ -22,6 +24,9 @@ public class EventoController {
 	@Autowired
 	@Qualifier("eventoService")
 	private IEventoService eventoService;
+
+	@Autowired
+	private CronCreateEventosSensorContenedor cronCreateEventosSensorContenedor;
 
 	@GetMapping("")
 	public ModelAndView index() {
@@ -38,6 +43,20 @@ public class EventoController {
 		mAV.addObject("evento", new Evento());
 
 		return mAV;
+	}
+	/*
+	 * @GetMapping("/solicitarMetricas") public ModelAndView create() {
+	 * cronCreateEventosSensorContenedor.leerMetricasCrearEventos();
+	 * 
+	 * return new ModelAndView(ViewRouteHelper.EVENTO_ROOT); }
+	 */
+
+	@GetMapping("/solicitarMetricas")
+	public RedirectView create() {
+		// Solicita Metricas SensorContenedor
+		cronCreateEventosSensorContenedor.leerMetricasCrearEventos();
+
+		return new RedirectView(ViewRouteHelper.EVENTO_ROOT);
 	}
 
 }
