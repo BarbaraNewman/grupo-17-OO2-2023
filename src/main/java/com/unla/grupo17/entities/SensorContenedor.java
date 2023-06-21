@@ -7,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,7 +25,13 @@ public class SensorContenedor {
 	private int idSensor;
 	private String modelo;
 	private String numeroSerie;
+
+	@Min(value = 0, message = "El nivel de batería debe ser igual o mayor a 0.")
+	@Max(value = 100, message = "El nivel de batería debe ser igual o menor a 100.")
 	private int nivelBateria;
+
+	@Min(value = 0, message = "El nivel de llenado debe ser igual o mayor a 0.")
+	@Max(value = 100, message = "El nivel de llenado debe ser igual o menor a 100.")
 	private int nivelLlenado;
 
 	@OneToOne(cascade = CascadeType.ALL)
