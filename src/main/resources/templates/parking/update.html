@@ -1,0 +1,16 @@
+<form action="#" th:action="@{/dispositivo/parking/update}" th:object="${parking}"
+	method="post">
+	<input type="hidden" th:field="*{idDispositivo}" />
+	</p>
+	<p>
+		Numero lugar: <input type="text" th:field="*{nroLugar}" />
+	</p>
+	<p>
+		Descripcion: <input type="text" th:field="*{descripcion}" />
+	</p>
+	<input type="submit" value="Edit" />
+</form>
+<form action="#" th:action="@{/dispositivo/parking/delete/{idDispositivo}(idDispositivo=${paring.idDispositivo})}"
+	 onsubmit="return confirm('¿Estás seguro de que quieres eliminar este registro?');" method="post" >
+	<input type="submit" value="delete" />
+</form>
