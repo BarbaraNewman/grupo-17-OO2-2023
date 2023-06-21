@@ -14,12 +14,17 @@ public class ViewRouteHelper {
 	public final static String EVENTO_INDEX = "/evento/index";
 
 	// DISPOSITIVO
-	public final static String DISPOSITIVO_INDEX = "/dispositivo/index";
+	public final static String DISPOSITIVO_INDEX = "dispositivo/index";
 
 	// CONTENEDOR
 	public final static String DISPOSITIVO_CONTENEDOR_INDEX = "/contenedor/index";
 	public final static String DISPOSITIVO_CONTENEDOR_NEW = "/contenedor/new";
 	public final static String DISPOSITIVO_CONTENEDOR_UPDATE = "/contenedor/update";
+
+	// PARKING
+	public final static String DISPOSITIVO_PARKING_INDEX = "/parking/index";
+	public final static String DISPOSITIVO_PARKING_NEW = "/parking/new";
+	public final static String DISPOSITIVO_PARKING_UPDATE = "/parking/update";
 
 	// USER
 	public final static String USER_LOGIN = "user/login";
@@ -29,4 +34,5 @@ public class ViewRouteHelper {
 	// REDIRECTION //
 	public final static String ROUTE_INDEX = "/index";
 	public final static String UBICACION_ROOT = "/ubicacion";
+	public final static String DISPOSITIVO_PARKING_ROOT = "/dispositivo/parking";
 }

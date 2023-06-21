@@ -26,6 +26,12 @@ public class EventoService implements IEventoService {
 	public Evento findByIdEvento(int idEvento) {
 		return eventoRepository.findByIdEvento(idEvento);
 	}
+	
+	@Override
+	public List<Evento> findByUltimoIdDispositivoEvento(int idDispositivo) {
+		return eventoRepository.findByUltimoIdDispositivoEvento(idDispositivo);
+	}
+
 
 	@Override
 	public Evento insertOrUpdate(Evento evento) {
