@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -80,7 +81,44 @@ public class ContenedorController {
 		} else {
 			contenedorService.insertOrUpdate(contenedor);
 			redirectAttributes.addFlashAttribute("success", "Entidad creada correctamente");
-			return new ModelAndView(new RedirectView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_ROOT, true, false));
+			return new ModelAndView(new RedirectView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_ROOT));
+		}
+
+		return mAV;
+	}
+
+	@GetMapping("/{idDispositivo}")
+	public ModelAndView get(@PathVariable("idDispositivo") int idDispositivo) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_UPDATE);
+
+		mAV.addObject("username", getLoggedUsername());
+		mAV.addObject("ubicaciones", ubicacionService.getAll());
+		mAV.addObject("contenedor", contenedorService.findByIdDispositivo(idDispositivo));
+		return mAV;
+	}
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PostMapping("/update")
+	public ModelAndView update(@Valid @ModelAttribute("contenedor") Contenedor contenedor, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_UPDATE);
+
+		mAV.addObject("ubicaciones", ubicacionService.getAll());
+
+		if (contenedor.getIdDispositivo() > 0) {
+			contenedor.setNombre(contenedor.getNombre());
+			contenedor.setUbicacion(contenedor.getUbicacion());
+			contenedor.setActivo(contenedor.isActivo());
+			contenedor.setReciclable(contenedor.isReciclable());
+			contenedor.setCapacidad(contenedor.getCapacidad());
+		}
+
+		if (bindingResult.hasErrors()) {
+			redirectAttributes.addFlashAttribute("error", "Ha ocurrido un error en la validación");
+		} else {
+			contenedorService.insertOrUpdate(contenedor);
+			redirectAttributes.addFlashAttribute("success", "Entidad creada correctamente");
+			return new ModelAndView(new RedirectView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_ROOT));
 		}
 
 		return mAV;
