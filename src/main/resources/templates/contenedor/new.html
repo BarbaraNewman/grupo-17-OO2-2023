@@ -157,18 +157,24 @@
                                         <div class="mb-3">
                                             <label for="nombre" class="form-label">Nombre:</label>
                                             <input type="text" class="form-control" id="nombre" th:field="*{nombre}"
-                                                placeholder="Ingrese el nombre">
+                                                placeholder="Ingrese el nombre" required>
+                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}"
+                                                th:errors="*{nombre}"></div>
                                         </div>
                                         <div class="mb-3">
                                             <label for="ubicacion" class="form-label">Ubicación:</label>
-                                            <select class="form-control" id="ubicacion" th:field="*{ubicacion}">
+                                            <select class="form-control" id="ubicacion" th:field="*{ubicacion}"
+                                                required>
                                                 <option value="">Selecciona una ubicación</option>
                                                 <option th:each="ubicacion : ${ubicaciones}"
                                                     th:value="${ubicacion.idUbicacion}"
                                                     th:text="${ubicacion.idUbicacion + ' ' + ubicacion.nombre}">
                                                 </option>
                                             </select>
+                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('ubicacion')}"
+                                                th:errors="*{ubicacion}"></div>
                                         </div>
+
                                         <div class="mb-3">
                                             <label class="form-check-label">
                                                 <input type="checkbox" class="form-check-input" th:field="*{activo}">
