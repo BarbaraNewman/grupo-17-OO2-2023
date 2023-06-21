@@ -22,23 +22,22 @@ public class CronCreateEventosSensorContenedor {
 	private IEventoService eventoService;
 
 	// Tarea programada
-	@Scheduled(fixedDelay = 60000) // 1 minuto // @Hourly
+	@Scheduled(fixedDelay = (60 * 60 * 1000)) // 1hr = (60min * 60seg * 1000ms)
+	public void cronoLeerMetricasCrearEventos() {
+		leerMetricasCrearEventos();
+	}
+
 	public void leerMetricasCrearEventos() {
 		// Se leen las metricas
 		List<SensorContenedor> metricasSensorContenedor = sensorContenedorService.getAll();
-
 		// Por cada metrica, se crea un evento
 		for (SensorContenedor sensorContenedor : metricasSensorContenedor) {
 			Evento evento = new Evento();
 			evento.setFechaHoraRegistro(LocalDateTime.now());
 			evento.setDispositivo(sensorContenedor.getContenedor());
-
 			evento.setDescripcion(sensorContenedor.toString());
 
 			eventoService.insertOrUpdate(evento);
-
-			///////////////////////////////////
-
 		}
 
 	}
