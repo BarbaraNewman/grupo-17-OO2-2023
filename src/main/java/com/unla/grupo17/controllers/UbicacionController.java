@@ -73,7 +73,7 @@ public class UbicacionController {
 		} else {
 			ubicacionService.insertOrUpdate(ubicacion);
 			redirectAttributes.addFlashAttribute("success", "Entidad creada correctamente");
-			return new ModelAndView(new RedirectView(ViewRouteHelper.UBICACION_ROOT, true, false));
+			return new ModelAndView(new RedirectView(ViewRouteHelper.UBICACION_ROOT));
 		}
 
 		return mAV;
