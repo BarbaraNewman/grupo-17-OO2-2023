@@ -28,17 +28,18 @@ public class EventoController {
 	@Autowired
 	private CronCreateEventosSensorContenedor cronCreateEventosSensorContenedor;
 
+	// Obtencion del nombre de Usuario
+	private String getLoggedUsername() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		return auth.getName();
+	}
+
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.EVENTO_INDEX); // Vista
 
-		// Obtencion del nombre de Usuario
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
-		mAV.addObject("username", username);
-
+		mAV.addObject("username", getLoggedUsername());
 		List<Evento> eventos = eventoService.getAll();
-
 		mAV.addObject("eventos", eventos);
 		mAV.addObject("evento", new Evento());
 

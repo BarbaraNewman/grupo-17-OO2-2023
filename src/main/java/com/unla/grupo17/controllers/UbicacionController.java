@@ -32,17 +32,18 @@ public class UbicacionController {
 	@Qualifier("ubicacionService")
 	private IUbicacionService ubicacionService;
 
+	// Obtencion del nombre de Usuario
+	private String getLoggedUsername() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		return auth.getName();
+	}
+
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.UBICACION_INDEX); // Vista
 
-		// Obtencion del nombre de Usuario
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
-		mAV.addObject("username", username);
-
+		mAV.addObject("username", getLoggedUsername());
 		List<Ubicacion> ubicaciones = ubicacionService.getAll();
-
 		mAV.addObject("ubicaciones", ubicaciones);
 		mAV.addObject("ubicacion", new Ubicacion());
 
@@ -54,11 +55,7 @@ public class UbicacionController {
 	public ModelAndView create() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.UBICACION_NEW);
 
-		// Obtencion del nombre de Usuario
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
-		mAV.addObject("username", username);
-
+		mAV.addObject("username", getLoggedUsername());
 		mAV.addObject("ubicacion", new Ubicacion());
 		return mAV;
 	}
@@ -69,10 +66,7 @@ public class UbicacionController {
 			RedirectAttributes redirectAttributes) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.UBICACION_NEW);
 
-		// Obtencion del nombre de Usuario
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
-		mAV.addObject("username", username);
+		mAV.addObject("username", getLoggedUsername());
 
 		if (bindingResult.hasErrors()) {
 			mAV.addObject("error", "Ha ocurrido un error en la validación");
@@ -89,11 +83,7 @@ public class UbicacionController {
 	public ModelAndView get(@PathVariable("idUbicacion") int idUbicacion) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.UBICACION_UPDATE);
 
-		// Obtencion del nombre de Usuario
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
-		mAV.addObject("username", username);
-
+		mAV.addObject("username", getLoggedUsername());
 		mAV.addObject("ubicacion", ubicacionService.findByIdUbicacion(idUbicacion));
 		return mAV;
 	}

@@ -36,17 +36,18 @@ public class ContenedorController {
 	@Qualifier("ubicacionService")
 	private IUbicacionService ubicacionService;
 
+	// Obtencion del nombre de Usuario
+	private String getLoggedUsername() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		return auth.getName();
+	}
+
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_INDEX); // Vista
 
-		// Obtencion del nombre de Usuario
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
-		mAV.addObject("username", username);
-
+		mAV.addObject("username", getLoggedUsername());
 		List<Contenedor> contenedores = contenedorService.getAll();
-
 		mAV.addObject("contenedores", contenedores);
 		mAV.addObject("contenedor", new Contenedor());
 
@@ -58,11 +59,7 @@ public class ContenedorController {
 	public ModelAndView create() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_NEW);
 
-		// Obtencion del nombre de Usuario
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
-		mAV.addObject("username", username);
-
+		mAV.addObject("username", getLoggedUsername());
 		mAV.addObject("contenedor", new Contenedor());
 		mAV.addObject("ubicaciones", ubicacionService.getAll());
 
@@ -75,11 +72,7 @@ public class ContenedorController {
 			RedirectAttributes redirectAttributes) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_NEW);
 
-		// Obtencion del nombre de Usuario
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
-		mAV.addObject("username", username);
-
+		mAV.addObject("username", getLoggedUsername());
 		mAV.addObject("ubicaciones", ubicacionService.getAll());
 
 		if (bindingResult.hasErrors()) {
