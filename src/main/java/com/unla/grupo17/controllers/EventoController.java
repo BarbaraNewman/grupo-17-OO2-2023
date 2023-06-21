@@ -45,7 +45,7 @@ public class EventoController {
 		return mAV;
 	}
 
-	@GetMapping("/solicitarMetricas")
+	@GetMapping("/obtenerMetricas")
 	public RedirectView create() {
 		// Solicita Metricas SensorContenedor
 		cronCreateEventosSensorContenedor.leerMetricasCrearEventos();

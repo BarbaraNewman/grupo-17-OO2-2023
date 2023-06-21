@@ -175,7 +175,9 @@
                                     <tr th:each="evento : ${eventos}">
                                         <td th:text="${evento.idEvento}"></td>
                                         <td th:text="${evento.descripcion}"></td>
-                                        <td th:text="${#temporals.format(evento.fechaHoraRegistro, 'dd/MM/yy HH:mm:ss')}"></td>
+                                        <td
+                                            th:text="${#temporals.format(evento.fechaHoraRegistro, 'dd/MM/yy HH:mm:ss')}">
+                                        </td>
                                         </td>
                                         <td>
                                             <a th:href="@{/evento/{idEvento}(idEvento=${evento.idEvento})}">Ver
@@ -188,8 +190,8 @@
                             <!-- Acciones -->
                             <div class="actions-section">
                                 <hr class="my-4">
-                                <a class="btn btn-primary" th:href="@{/evento/solicitarMetricas}">
-                                    Solicita Metricas
+                                <a class="btn btn-primary" th:href="@{/evento/obtenerMetricas}">
+                                    Obtener Métricas
                                 </a>
                             </div>
 
