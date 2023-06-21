@@ -75,7 +75,14 @@
 
                     <form action="#" th:action="@{/dispositivo/contenedor/create}" th:object="${contenedor}" method="post">
                         <p>Nombre: <input type="text" th:field="*{nombre}" /></p>
-    					<p>Ubicación: <input type="text" th:field="*{ubicacion.idUbicacion}" /></p>
+                        
+    					<p>Ubicación:
+					        <select th:field="*{ubicacion}" >
+					            <option value="">Selecciona una ubicación</option>
+					            <option th:each="ubicacion : ${ubicaciones}" th:value="${ubicacion.idUbicacion}" th:text="${ubicacion.idUbicacion + ' ' + ubicacion.nombre}"></option>
+					        </select>
+					    </p>
+					    
                         <p>Activo: <input type="checkbox" th:field="*{activo}" /></p>
                         
                         <p>Reciclable: <input type="checkbox" th:field="*{reciclable}" /></p>
@@ -106,8 +113,8 @@
         crossorigin="anonymous"></script>
     <script src="/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="/assets/demo/chart-area-demo.js"></script>
+    <script src="/assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="/js/datatables-simple-demo.js"></script>

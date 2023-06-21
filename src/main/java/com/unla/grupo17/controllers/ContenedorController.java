@@ -20,6 +20,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.unla.grupo17.entities.Contenedor;
 import com.unla.grupo17.helpers.ViewRouteHelper;
 import com.unla.grupo17.services.IContenedorService;
+import com.unla.grupo17.services.IUbicacionService;
 
 import jakarta.validation.Valid;
 
@@ -30,6 +31,10 @@ public class ContenedorController {
 	@Autowired
 	@Qualifier("contenedorService")
 	private IContenedorService contenedorService;
+
+	@Autowired
+	@Qualifier("ubicacionService")
+	private IUbicacionService ubicacionService;
 
 	@GetMapping("")
 	public ModelAndView index() {
@@ -53,6 +58,8 @@ public class ContenedorController {
 	public ModelAndView create() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_NEW);
 		mAV.addObject("contenedor", new Contenedor());
+		mAV.addObject("ubicaciones", ubicacionService.getAll());
+
 		return mAV;
 	}
 
@@ -61,6 +68,7 @@ public class ContenedorController {
 	public ModelAndView create(@Valid @ModelAttribute("contenedor") Contenedor contenedor, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_NEW);
+		mAV.addObject("ubicaciones", ubicacionService.getAll());
 
 		if (bindingResult.hasErrors()) {
 			mAV.addObject("error", "Ha ocurrido un error en la validación");
