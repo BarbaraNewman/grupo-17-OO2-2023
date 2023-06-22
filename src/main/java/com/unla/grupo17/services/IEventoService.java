@@ -3,6 +3,7 @@ package com.unla.grupo17.services;
 import java.util.List;
 
 import com.unla.grupo17.entities.Evento;
+import com.unla.grupo17.entities.Ubicacion;
 
 public interface IEventoService {
 
@@ -10,8 +11,10 @@ public interface IEventoService {
 
 	public abstract Evento findByIdEvento(int idEvento);
 
-	public Evento insertOrUpdate(Evento evento);		
-	
+	public Evento insertOrUpdate(Evento evento);
+
 	public List<Evento> findByUltimoIdDispositivoEvento(int idDispositivo);
+
+	public List<Evento> getEventosByUbicacion(Ubicacion ubicacion);
 
 }

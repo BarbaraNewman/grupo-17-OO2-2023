@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.unla.grupo17.entities.Evento;
+import com.unla.grupo17.entities.Ubicacion;
 import com.unla.grupo17.repositories.IEventoRepository;
 import com.unla.grupo17.services.IEventoService;
 
@@ -26,16 +27,19 @@ public class EventoService implements IEventoService {
 	public Evento findByIdEvento(int idEvento) {
 		return eventoRepository.findByIdEvento(idEvento);
 	}
-	
+
 	@Override
 	public List<Evento> findByUltimoIdDispositivoEvento(int idDispositivo) {
 		return eventoRepository.findByUltimoIdDispositivoEvento(idDispositivo);
 	}
 
-
 	@Override
 	public Evento insertOrUpdate(Evento evento) {
 		return eventoRepository.save(evento);
+	}
+
+	public List<Evento> getEventosByUbicacion(Ubicacion ubicacion) {
+		return eventoRepository.findByUbicacion(ubicacion);
 	}
 
 }
