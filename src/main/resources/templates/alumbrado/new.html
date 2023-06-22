@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -40,7 +39,9 @@
 					<li>
 						<hr class="dropdown-divider" />
 					</li>
-					<li><a class="dropdown-item" href="#!">Logout</a></li>
+					<form th:action="@{/logout}" method="post">
+						<input class="dropdown-item" style="cursor: pointer" type="submit" value="Logout" />
+					</form>
 				</ul>
 			</li>
 		</ul>
@@ -66,21 +67,25 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">Ubicaciones</h1>
+					<h1 class="mt-4">Nuevo dispositivo Alumbrado</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item active">Dashboard</li>
 					</ol>
 
-
-
-					<form action="#" th:action="@{/ubicacion/create}" th:object="${ubicacion}" method="post">
-						<p>Nombre: <input type="text" th:field="*{nombre}" /></p>
-						<p>Descripcion: <input type="text" th:field="*{descripcion}" /></p>
-						<input class="btn btn-primary" type="submit" value="Crear Ubicacion" />
+					<form action="#" th:action="@{/dispositivo/alumbrado/create}" th:object="${alumbrado}" method="post">
+						<p>Nombre dispositivo: <input type="text" th:field="*{nombre}" /></p>
+						<p>Estado de la luz: <input type="checkbox" th:field="*{estadoLuces}" /></p>
+						<p>Control de alumbrado: <input type="text" th:field="*{controlDeAlumbrado}" /></p>
+						<p>Activo: <input type="checkbox" th:field="*{activo}" /></p>
+						<p>Ubicación:
+							<select th:field="*{ubicacion}">
+								<option value="">Selecciona una ubicación</option>
+								<option th:each="ubicacion : ${ubicaciones}" th:value="${ubicacion.idUbicacion}"
+									th:text="${ubicacion.idUbicacion + ' ' + ubicacion.nombre}"></option>
+							</select>
+						</p>
+						<input class="btn btn-primary" type="submit" value="Crear Alumbrado" />
 					</form>
-
-
-
 
 
 				</div>
