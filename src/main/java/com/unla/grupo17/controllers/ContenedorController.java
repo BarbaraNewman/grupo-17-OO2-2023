@@ -103,6 +103,7 @@ public class ContenedorController {
 			RedirectAttributes redirectAttributes) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_UPDATE);
 
+		mAV.addObject("username", getLoggedUsername());
 		mAV.addObject("ubicaciones", ubicacionService.getAll());
 
 		if (contenedor.getIdDispositivo() > 0) {

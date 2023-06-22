@@ -90,7 +90,7 @@ public class UbicacionController {
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/update")
-	public RedirectView update(@ModelAttribute("ubicacion") Ubicacion ubicacion) {
+	public RedirectView update(@Valid @ModelAttribute("ubicacion") Ubicacion ubicacion) {
 		if (ubicacion.getIdUbicacion() > 0) {
 			ubicacion.setNombre(ubicacion.getNombre());
 			ubicacion.setDescripcion(ubicacion.getDescripcion());

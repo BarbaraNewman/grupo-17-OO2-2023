@@ -159,14 +159,15 @@
 										<div class="mb-3">
 											<label for="nombre" class="form-label">Nombre:</label>
 											<input type="text" class="form-control" id="nombre" th:field="*{nombre}"
-												placeholder="Ingrese el nombre">
+												placeholder="Ingrese el nombre" required>
 										</div>
 										<div class="mb-3">
 											<label for="descripcion" class="form-label">Descripción:</label>
 											<input type="text" class="form-control" id="descripcion"
 												th:field="*{descripcion}" placeholder="Ingrese la descripción">
 										</div>
-										<button type="submit" class="btn btn-primary">Editar</button>
+										<button type="submit" class="btn btn-primary"
+											th:classappend="${username != 'admin'} ? 'disabled'">Editar</button>
 									</form>
 
 									<form action="#"
@@ -174,7 +175,8 @@
 										onsubmit="return confirm('¿Estás seguro de que quieres eliminar este registro?');"
 										method="post">
 										<div class="mt-3">
-											<input type="submit" class="btn btn-danger" value="Eliminar" />
+											<input type="submit" class="btn btn-danger" value="Eliminar"
+												th:classappend="${username != 'admin'} ? 'disabled'" />
 										</div>
 									</form>
 

@@ -202,9 +202,11 @@
 
 										</div>
 
-										<button type="submit" class="btn btn-primary">Editar</button>
-									</form>
-
+										<button type="submit" class="btn btn-primary"
+											th:classappend="${username != 'admin'} ? 'disabled' : ''"
+											th:disabled="${username != 'admin'}">
+											Editar
+										</button>
 
 
 								</div>

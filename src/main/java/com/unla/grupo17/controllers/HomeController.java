@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.grupo17.helpers.ViewRouteHelper;
 
@@ -28,6 +29,11 @@ public class HomeController {
 		mAV.addObject("username", getLoggedUsername());
 
 		return mAV;
+	}
+
+	@GetMapping("")
+	public RedirectView toIndex() {
+		return new RedirectView(ViewRouteHelper.ROUTE_INDEX);
 	}
 
 }
