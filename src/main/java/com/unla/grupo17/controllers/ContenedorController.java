@@ -103,23 +103,20 @@ public class ContenedorController {
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/update")
-	public ModelAndView update(@Valid @ModelAttribute("contenedor") ContenedorModel contenedorModel,
-			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+	public ModelAndView update(@Valid @ModelAttribute("contenedor") Contenedor contenedor, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_UPDATE);
-
-		Contenedor contenedor = modelMapper.map(contenedorModel, Contenedor.class);
 
 		mAV.addObject("username", getLoggedUsername());
 		mAV.addObject("ubicaciones", ubicacionService.getAll());
-
 		if (contenedor.getIdDispositivo() > 0) {
-			Contenedor contenedorOld = contenedorService.findByIdDispositivo(contenedorModel.getIdDispositivo());
-			contenedor.setNombre(contenedorOld.getNombre());
-			contenedor.setUbicacion(contenedorOld.getUbicacion());
-			contenedor.setActivo(contenedorOld.isActivo());
-			contenedor.setReciclable(contenedorOld.isReciclable());
-			contenedor.setCapacidad(contenedorOld.getCapacidad());
-			contenedor.setFechaCreacion(contenedorOld.getFechaCreacion());
+			contenedor.setNombre(contenedor.getNombre());
+			contenedor.setUbicacion(contenedor.getUbicacion());
+			contenedor.setActivo(contenedor.isActivo());
+			contenedor.setReciclable(contenedor.isReciclable());
+			contenedor.setCapacidad(contenedor.getCapacidad());
+			contenedor.setFechaCreacion(contenedor.getFechaCreacion());
+
 		}
 
 		if (bindingResult.hasErrors()) {
@@ -129,8 +126,6 @@ public class ContenedorController {
 			redirectAttributes.addFlashAttribute("success", "Entidad creada correctamente");
 			return new ModelAndView(new RedirectView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_ROOT));
 		}
-
 		return mAV;
 	}
-
 }
