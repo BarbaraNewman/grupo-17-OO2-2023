@@ -2,6 +2,7 @@ package com.unla.grupo17.controllers;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.grupo17.entities.Contenedor;
 import com.unla.grupo17.helpers.ViewRouteHelper;
+import com.unla.grupo17.models.ContenedorModel;
 import com.unla.grupo17.services.IContenedorService;
 import com.unla.grupo17.services.IUbicacionService;
 
@@ -36,6 +38,8 @@ public class ContenedorController {
 	@Autowired
 	@Qualifier("ubicacionService")
 	private IUbicacionService ubicacionService;
+
+	private ModelMapper modelMapper = new ModelMapper();
 
 	// Obtencion del nombre de Usuario
 	private String getLoggedUsername() {
@@ -69,8 +73,8 @@ public class ContenedorController {
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/create")
-	public ModelAndView create(@Valid @ModelAttribute("contenedor") Contenedor contenedor, BindingResult bindingResult,
-			RedirectAttributes redirectAttributes) {
+	public ModelAndView create(@Valid @ModelAttribute("contenedor") ContenedorModel contenedorModel,
+			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_NEW);
 
 		mAV.addObject("username", getLoggedUsername());
@@ -79,7 +83,7 @@ public class ContenedorController {
 		if (bindingResult.hasErrors()) {
 			mAV.addObject("error", "Ha ocurrido un error en la validación");
 		} else {
-			contenedorService.insertOrUpdate(contenedor);
+			contenedorService.insertOrUpdate(modelMapper.map(contenedorModel, Contenedor.class));
 			redirectAttributes.addFlashAttribute("success", "Entidad creada correctamente");
 			return new ModelAndView(new RedirectView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_ROOT));
 		}
@@ -99,19 +103,23 @@ public class ContenedorController {
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/update")
-	public ModelAndView update(@Valid @ModelAttribute("contenedor") Contenedor contenedor, BindingResult bindingResult,
-			RedirectAttributes redirectAttributes) {
+	public ModelAndView update(@Valid @ModelAttribute("contenedor") ContenedorModel contenedorModel,
+			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_UPDATE);
+
+		Contenedor contenedor = modelMapper.map(contenedorModel, Contenedor.class);
 
 		mAV.addObject("username", getLoggedUsername());
 		mAV.addObject("ubicaciones", ubicacionService.getAll());
 
 		if (contenedor.getIdDispositivo() > 0) {
-			contenedor.setNombre(contenedor.getNombre());
-			contenedor.setUbicacion(contenedor.getUbicacion());
-			contenedor.setActivo(contenedor.isActivo());
-			contenedor.setReciclable(contenedor.isReciclable());
-			contenedor.setCapacidad(contenedor.getCapacidad());
+			Contenedor contenedorOld = contenedorService.findByIdDispositivo(contenedorModel.getIdDispositivo());
+			contenedor.setNombre(contenedorOld.getNombre());
+			contenedor.setUbicacion(contenedorOld.getUbicacion());
+			contenedor.setActivo(contenedorOld.isActivo());
+			contenedor.setReciclable(contenedorOld.isReciclable());
+			contenedor.setCapacidad(contenedorOld.getCapacidad());
+			contenedor.setFechaCreacion(contenedorOld.getFechaCreacion());
 		}
 
 		if (bindingResult.hasErrors()) {
