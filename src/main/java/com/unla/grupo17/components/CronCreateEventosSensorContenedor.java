@@ -33,7 +33,7 @@ public class CronCreateEventosSensorContenedor {
 
 	public void leerMetricasCrearEventos() {
 		// Se leen las metricas
-		List<SensorContenedor> metricasSensorContenedor = sensorContenedorService.getAll();
+		List<SensorContenedor> metricasSensorContenedor = sensorContenedorService.getContenedorByActive();
 		// Por cada metrica, se crea un evento
 		for (SensorContenedor sensorContenedor : metricasSensorContenedor) {
 			Evento evento = new Evento();
