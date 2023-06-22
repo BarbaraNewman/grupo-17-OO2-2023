@@ -14,7 +14,7 @@ public class ViewRouteHelper {
 	public final static String EVENTO_INDEX = "/evento/index";
 
 	// DISPOSITIVO
-	public final static String DISPOSITIVO_INDEX = "/dispositivo/index";
+	public final static String DISPOSITIVO_INDEX = "dispositivo/index";
 
 	// ALUMBRADO
 	public final static String DISPOSITIVO_ALUMBRADO_INDEX = "/alumbrado/index";
@@ -34,4 +34,5 @@ public class ViewRouteHelper {
 	// REDIRECTION //
 	public final static String ROUTE_INDEX = "/index";
 	public final static String UBICACION_ROOT = "/ubicacion";
+	public final static String DISPOSITIVO_ALUMBRADO_ROOT = "/dispositivo/alumbrado";
 }
