@@ -83,7 +83,7 @@
 							<div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
 							Auditoría
 						</a>
-						<a class="nav-link" th:href="@{/evento}">
+						<a class="nav-link active" th:href="@{/evento}">
 							<div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
 							Eventos
 						</a>
@@ -95,25 +95,25 @@
 							Dispositivos
 							<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 						</a>
-						<div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
+						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link active" th:href="@{/dispositivo/contenedor}">Contenedores</a>
+								<a class="nav-link" th:href="@{/dispositivo/contenedor}">Contenedores</a>
 							</nav>
 						</div>
-						<div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
+						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="/">Alumbrado</a>
 							</nav>
 						</div>
-						<div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
+						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" h:href="/">Parking</a>
+								<a class="nav-link" th:href="@{/dispositivo/parking}">Parking</a>
 							</nav>
 						</div>
-						<div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
+						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" h:href="/">Sanitarios</a>
@@ -140,7 +140,7 @@
 			<!-- Main Content-->
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">Actualizar Contenedor</h1>
+					<h1 class="mt-4">Detalles de Evento</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item active"
 							th:text="${'Fecha: ' + #temporals.format(#temporals.createNow(), 'dd/MM/yyyy HH:mm:ss')}">
@@ -153,64 +153,44 @@
 							<div class="card">
 								<div class="card-body">
 
-
-
-
-									<form action="#" th:action="@{/dispositivo/contenedor/update}"
-										th:object="${contenedor}" method="post">
-										<input type="hidden" th:field="*{idDispositivo}" />
+									<form>
 										<div class="mb-3">
-											<label for="nombre" class="form-label">Nombre:</label>
-											<input type="text" class="form-control" id="nombre" th:field="*{nombre}"
-												placeholder="Ingrese el nombre" required />
-										</div>
-										
-										<input type="hidden" th:field="*{fechaCreacion}" />
-
-
-										<div class="mb-3">
-											<label for="ubicacion" class="form-label">Ubicación:</label>
-											<select class="form-control" id="ubicacion" th:field="*{ubicacion}"
-												required>
-												<option value="">Selecciona una ubicación</option>
-												<option th:each="ubicacion : ${ubicaciones}"
-													th:value="${ubicacion.idUbicacion}"
-													th:text="${ubicacion.idUbicacion + ' - ' + ubicacion.nombre}">
-												</option>
-											</select>
-											<div class="invalid-feedback"
-												th:if="${#fields.hasErrors('ubicacion.nombre')}"
-												th:errors="*{ubicacion.nombre}"></div>
+											<label for="idEvento" class="form-label">ID de Evento:</label>
+											<input type="text" class="form-control" id="idEvento" th:value="${idEvento}"
+												readonly>
 										</div>
 
 										<div class="mb-3">
-											<label for="capacidad" class="form-label">Capacidad:</label>
-											<input type="text" class="form-control" id="capacidad"
-												th:field="*{capacidad}" placeholder="Ingrese la capacidad" required>
+											<label for="fechaHoraRegistro" class="form-label">Fecha | Hora de
+												Registro:</label>
+											<input type="text" class="form-control" id="fechaHoraRegistro"
+												th:value="${#temporals.format(evento.fechaHoraRegistro, 'dd/MM/yyyy | HH:mm:ss.SSS')}"
+												readonly>
 										</div>
 
 										<div class="mb-3">
-											<div class="form-check form-switch form-check-inline">
-												<input class="form-check-input" type="checkbox" role="switch"
-													id="flexSwitchCheckDefault" th:field="*{activo}">
-												<label class="form-check-label"
-													for="flexSwitchCheckDefault">Activo</label>
+											<label for="descripcion" class="form-label">Descripción:</label>
+											<input type="text" class="form-control" id="descripcion"
+												th:value="${evento.descripcion}" readonly>
+										</div>
+
+										<div class="row g-3">
+											<div class="col-6">
+												<label for="dispositivo" class="form-label">ID | Nombre de
+													Dispositivo:</label>
+												<input type="text" class="form-control" id="dispositivo"
+													th:value="${evento.dispositivo.idDispositivo + ' - ' + evento.dispositivo.nombre}"
+													readonly>
 											</div>
-
-											<div class="form-check form-check-inline">
-												<input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-													th:field="*{reciclable}">
-												<label class="form-check-label" for="inlineCheckbox2">Reciclable</label>
+											<div class="col-6">
+												<label for="ubicacion" class="form-label">Ubicación:</label>
+												<input type="text" class="form-control" id="ubicacion"
+													th:value="${evento.dispositivo.ubicacion.nombre}" readonly>
 											</div>
-
 										</div>
 
-										<button type="submit" class="btn btn-primary"
-											th:classappend="${username != 'admin'} ? 'disabled' : ''"
-											th:disabled="${username != 'admin'}">
-											Editar
-										</button>
 
+									</form>
 
 								</div>
 							</div>
