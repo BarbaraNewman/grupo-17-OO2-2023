@@ -1,7 +1,5 @@
 package com.unla.grupo17.controllers;
 
-import java.util.List;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,6 +21,7 @@ import com.unla.grupo17.entities.Contenedor;
 import com.unla.grupo17.helpers.ViewRouteHelper;
 import com.unla.grupo17.models.ContenedorModel;
 import com.unla.grupo17.services.IContenedorService;
+import com.unla.grupo17.services.IEventoService;
 import com.unla.grupo17.services.IUbicacionService;
 
 import jakarta.validation.Valid;
@@ -39,6 +38,10 @@ public class ContenedorController {
 	@Qualifier("ubicacionService")
 	private IUbicacionService ubicacionService;
 
+	@Autowired
+	@Qualifier("eventoService")
+	private IEventoService eventoService;
+
 	private ModelMapper modelMapper = new ModelMapper();
 
 	// Obtencion del nombre de Usuario
@@ -52,9 +55,7 @@ public class ContenedorController {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_INDEX); // Vista
 
 		mAV.addObject("username", getLoggedUsername());
-		List<Contenedor> contenedores = contenedorService.getAll();
-		mAV.addObject("contenedores", contenedores);
-		mAV.addObject("contenedor", new Contenedor());
+		mAV.addObject("contenedores", contenedorService.getAll());
 
 		return mAV;
 	}
@@ -98,6 +99,17 @@ public class ContenedorController {
 		mAV.addObject("username", getLoggedUsername());
 		mAV.addObject("ubicaciones", ubicacionService.getAll());
 		mAV.addObject("contenedor", contenedorService.findByIdDispositivo(idDispositivo));
+		return mAV;
+	}
+
+	@GetMapping("/{idDispositivo}/eventos")
+	public ModelAndView getEventos(@PathVariable("idDispositivo") int idDispositivo) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_EVENTO);
+
+		mAV.addObject("username", getLoggedUsername());
+		mAV.addObject("eventos", eventoService.getEventosByDispositivo(idDispositivo));
+		mAV.addObject("idDispositivo", idDispositivo);
+
 		return mAV;
 	}
 
