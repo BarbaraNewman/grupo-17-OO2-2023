@@ -1,7 +1,5 @@
 package com.unla.grupo17.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
@@ -14,9 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.grupo17.components.CronCreateEventosSensorContenedor;
-import com.unla.grupo17.entities.Evento;
 import com.unla.grupo17.helpers.ViewRouteHelper;
 import com.unla.grupo17.services.IEventoService;
+import com.unla.grupo17.services.IUbicacionService;
 
 @Controller
 @RequestMapping("evento")
@@ -25,6 +23,10 @@ public class EventoController {
 	@Autowired
 	@Qualifier("eventoService")
 	private IEventoService eventoService;
+
+	@Autowired
+	@Qualifier("ubicacionService")
+	private IUbicacionService ubicacionService;
 
 	@Autowired
 	private CronCreateEventosSensorContenedor cronCreateEventosSensorContenedor;
@@ -40,9 +42,8 @@ public class EventoController {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.EVENTO_INDEX); // Vista
 
 		mAV.addObject("username", getLoggedUsername());
-		List<Evento> eventos = eventoService.getAll();
-		mAV.addObject("eventos", eventos);
-		mAV.addObject("evento", new Evento());
+		mAV.addObject("eventos", eventoService.getAllByOrderByFechaHoraRegistroDesc());
+		mAV.addObject("ubicaciones", ubicacionService.getAll());
 
 		return mAV;
 	}
