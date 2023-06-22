@@ -10,6 +10,8 @@ public interface IEventoService {
 
 	public abstract Evento findByIdEvento(int idEvento);
 
-	public Evento insertOrUpdate(Evento evento);
+	public Evento insertOrUpdate(Evento evento);		
+	
+	public List<Evento> findByUltimoIdDispositivoEvento(int idDispositivo);
 
 }
