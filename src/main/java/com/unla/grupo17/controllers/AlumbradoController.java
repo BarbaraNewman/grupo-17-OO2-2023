@@ -55,7 +55,7 @@ public class AlumbradoController {
 	@GetMapping("/new")
 	public ModelAndView create() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_ALUMBRADO_NEW);
-		mAV.addObject("parking", new Alumbrado());
+		mAV.addObject("alumbrado", new Alumbrado());
 		mAV.addObject("ubicaciones", ubicacionService.getAll());
 		return mAV;
 	}
