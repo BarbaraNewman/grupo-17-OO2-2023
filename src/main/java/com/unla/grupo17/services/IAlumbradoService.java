@@ -9,5 +9,7 @@ public interface IAlumbradoService {
 	List<Alumbrado> getall();
 
 	public abstract Alumbrado findByIdDispositivo(int idDispositivo);
+	
+	public Alumbrado insertOrUpdate(Alumbrado alumbrado);
 
 }
