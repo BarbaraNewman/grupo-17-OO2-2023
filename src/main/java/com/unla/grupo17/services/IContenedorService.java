@@ -8,6 +8,8 @@ public interface IContenedorService {
 
 	List<Contenedor> getAll();
 
+	public List<Contenedor> getAllByActivo(Boolean active);
+
 	public abstract Contenedor findByIdDispositivo(int idDispositivo);
 
 	public Contenedor insertOrUpdate(Contenedor contenedor);

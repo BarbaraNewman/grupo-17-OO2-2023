@@ -22,6 +22,11 @@ public class SensorContenedorService implements ISensorContenedorService {
 		return sensorContenedorRepository.findAll();
 	}
 
+	public List<SensorContenedor> getContenedorByActive() {
+		return sensorContenedorRepository.findContenedorByActive();
+
+	}
+
 	@Override
 	public SensorContenedor findByIdSensor(int idSensor) {
 		return sensorContenedorRepository.findByIdSensor(idSensor);

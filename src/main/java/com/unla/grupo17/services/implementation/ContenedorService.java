@@ -23,6 +23,11 @@ public class ContenedorService implements IContenedorService {
 	}
 
 	@Override
+	public List<Contenedor> getAllByActivo(Boolean active) {
+		return contenedorRepository.findByActivo(active);
+	}
+
+	@Override
 	public Contenedor findByIdDispositivo(int idDispositivo) {
 		return contenedorRepository.findByIdDispositivo(idDispositivo);
 	}

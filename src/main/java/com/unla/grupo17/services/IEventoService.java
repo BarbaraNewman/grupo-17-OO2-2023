@@ -8,20 +8,20 @@ import com.unla.grupo17.entities.Ubicacion;
 
 public interface IEventoService {
 
-	List<Evento> getAll();
+	public abstract List<Evento> getAll();
 
-	List<Evento> getAllByOrderByFechaHoraRegistroDesc();
+	public abstract List<Evento> getAllByOrderByFechaHoraRegistroDesc();
 
 	public abstract Evento findByIdEvento(int idEvento);
 
-	public Evento insertOrUpdate(Evento evento);
+	public abstract Evento insertOrUpdate(Evento evento);
 
-	public List<Evento> findByUltimoIdDispositivoEvento(int idDispositivo);
+	public abstract List<Evento> findByUltimoIdDispositivoEvento(int idDispositivo);
 
-	public List<Evento> getEventosByUbicacion(Ubicacion ubicacion);
+	public abstract List<Evento> getEventosByUbicacion(Ubicacion ubicacion);
 
-	public List<Evento> getEventosByDispositivo(Dispositivo dispositivo);
+	public abstract List<Evento> getEventosByDispositivo(Dispositivo dispositivo);
 
-	public List<Evento> getEventosByDispositivo(int idDispositivo);
+	public abstract List<Evento> getEventosByDispositivo(int idDispositivo);
 
 }

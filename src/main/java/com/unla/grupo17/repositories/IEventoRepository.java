@@ -15,7 +15,7 @@ import com.unla.grupo17.entities.Ubicacion;
 @Repository("eventoRepository")
 public interface IEventoRepository extends JpaRepository<Evento, Serializable> {
 
-	List<Evento> findAllByOrderByFechaHoraRegistroDesc();
+	public abstract List<Evento> findAllByOrderByFechaHoraRegistroDesc();
 
 	public abstract Evento findByIdEvento(int idEvento);
 
@@ -25,7 +25,7 @@ public interface IEventoRepository extends JpaRepository<Evento, Serializable> {
 	public abstract List<Evento> findByUltimoIdDispositivoEvento(int idDispositivo);
 
 	@Query("SELECT e FROM Evento e WHERE e.dispositivo.ubicacion = :ubicacion")
-	List<Evento> findByUbicacion(@Param("ubicacion") Ubicacion ubicacion);
+	public abstract List<Evento> findByUbicacion(@Param("ubicacion") Ubicacion ubicacion);
 
 	@Query("SELECT e FROM Evento e WHERE e.dispositivo = :dispositivo")
 	public abstract List<Evento> findByDispositivo(@Param("dispositivo") Dispositivo dispositivo);
