@@ -20,6 +20,8 @@ public interface IEventoService {
 
 	public abstract List<Evento> getEventosByUbicacion(Ubicacion ubicacion);
 
+	public abstract List<Evento> getEventosByUbicacion(int idUbicacion);
+
 	public abstract List<Evento> getEventosByDispositivo(Dispositivo dispositivo);
 
 	public abstract List<Evento> getEventosByDispositivo(int idDispositivo);

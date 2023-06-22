@@ -27,6 +27,9 @@ public interface IEventoRepository extends JpaRepository<Evento, Serializable> {
 	@Query("SELECT e FROM Evento e WHERE e.dispositivo.ubicacion = :ubicacion")
 	public abstract List<Evento> findByUbicacion(@Param("ubicacion") Ubicacion ubicacion);
 
+	@Query("SELECT e FROM Evento e WHERE e.dispositivo.ubicacion.idUbicacion = :idUbicacion")
+	public abstract List<Evento> findByUbicacion(@Param("idUbicacion") int idDispositivo);
+
 	@Query("SELECT e FROM Evento e WHERE e.dispositivo = :dispositivo")
 	public abstract List<Evento> findByDispositivo(@Param("dispositivo") Dispositivo dispositivo);
 

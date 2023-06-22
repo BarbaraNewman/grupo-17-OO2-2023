@@ -20,6 +20,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.grupo17.entities.Ubicacion;
 import com.unla.grupo17.helpers.ViewRouteHelper;
+import com.unla.grupo17.services.IEventoService;
 import com.unla.grupo17.services.IUbicacionService;
 
 import jakarta.validation.Valid;
@@ -31,6 +32,10 @@ public class UbicacionController {
 	@Autowired
 	@Qualifier("ubicacionService")
 	private IUbicacionService ubicacionService;
+
+	@Autowired
+	@Qualifier("eventoService")
+	private IEventoService eventoService;
 
 	// Obtencion del nombre de Usuario
 	private String getLoggedUsername() {
@@ -104,6 +109,16 @@ public class UbicacionController {
 	public RedirectView delete(@PathVariable("idUbicacion") int idUbicacion) {
 		ubicacionService.remove(idUbicacion);
 		return new RedirectView(ViewRouteHelper.UBICACION_ROOT);
+	}
+
+	@GetMapping("/{idUbicacion}/eventos")
+	public ModelAndView getEventos(@PathVariable("idUbicacion") int idUbicacion) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.UBICACION_EVENTO);
+
+		mAV.addObject("username", getLoggedUsername());
+		mAV.addObject("eventos", eventoService.getEventosByUbicacion(idUbicacion));
+
+		return mAV;
 	}
 
 }

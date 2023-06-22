@@ -49,6 +49,11 @@ public class EventoService implements IEventoService {
 	}
 
 	@Override
+	public List<Evento> getEventosByUbicacion(int idUbicacion) {
+		return eventoRepository.findByUbicacion(idUbicacion);
+	}
+
+	@Override
 	public List<Evento> getEventosByDispositivo(Dispositivo dispositivo) {
 		return eventoRepository.findByDispositivo(dispositivo);
 	}

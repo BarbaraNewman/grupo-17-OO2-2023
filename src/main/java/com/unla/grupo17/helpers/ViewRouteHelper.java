@@ -9,6 +9,7 @@ public class ViewRouteHelper {
 	public final static String UBICACION_INDEX = "/ubicacion/index";
 	public final static String UBICACION_NEW = "/ubicacion/new";
 	public final static String UBICACION_UPDATE = "/ubicacion/update";
+	public final static String UBICACION_EVENTO = "/ubicacion/events";
 
 	// EVENTO
 	public final static String EVENTO_INDEX = "/evento/index";

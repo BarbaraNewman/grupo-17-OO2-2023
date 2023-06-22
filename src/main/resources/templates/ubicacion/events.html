@@ -83,7 +83,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Auditoría
                         </a>
-                        <a class="nav-link" th:href="@{/evento}">
+                        <a class="nav-link active" th:href="@{/evento}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Eventos
                         </a>
@@ -120,7 +120,7 @@
                             </nav>
                         </div>
 
-                        <a class="nav-link active" th:href="@{/ubicacion}">
+                        <a class="nav-link" th:href="@{/ubicacion}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Ubicaciones
                         </a>
@@ -140,7 +140,7 @@
             <!-- Main Content-->
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Ubicaciones</h1>
+                    <h1 class="mt-4">Eventos de Ubicación <span th:text="${idUbicacion}"></span></h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active"
                             th:text="${'Fecha: ' + #temporals.format(#temporals.createNow(), 'dd/MM/yyyy HH:mm:ss')}">
@@ -151,51 +151,48 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            Ubicaciones
+                            Eventos
                         </div>
                         <div class="card-body">
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Nombre</th>
+                                        <th>Fecha de Registro</th>
                                         <th>Descripción</th>
+                                        <th>Dispositivo</th>
+                                        <th>Ubicación</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Nombre</th>
+                                        <th>Fecha de Registro</th>
                                         <th>Descripción</th>
+                                        <th>Dispositivo</th>
+                                        <th>Ubicación</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr th:each="ubicacion : ${ubicaciones}">
-                                        <td th:text="${ubicacion.idUbicacion}"></td>
-                                        <td th:text="${ubicacion.nombre}"></td>
-                                        <td th:text="${ubicacion.descripcion}"></td>
+                                    <tr th:each="evento : ${eventos}">
+                                        <td th:text="${evento.idEvento}"></td>
+                                        <td
+                                            th:text="${#temporals.format(evento.fechaHoraRegistro, 'dd/MM/yy HH:mm:ss')}">
+                                        </td>
+                                        <td th:text="${evento.descripcion}"></td>
+                                        <td th:text="${evento.dispositivo.nombre}"></td>
+                                        <td th:text="${evento.dispositivo.ubicacion.nombre}"></td>
+
                                         <td>
-											<a
-                                                th:href="@{/ubicacion/{idUbicacion}/eventos(idUbicacion=${ubicacion.idUbicacion})}">Ver
-                                                Eventos</a>
-                                            <a
-                                                th:href="@{/ubicacion/{idUbicacion}(idUbicacion=${ubicacion.idUbicacion})}">Ver
+                                            <a th:href="@{/evento/{idEvento}(idEvento=${evento.idEvento})}">Ver
                                                 Detalles</a>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
 
-                            <!-- Acciones -->
-                            <div class="actions-section">
-                                <hr class="my-4">
-                                <a class="btn btn-primary" th:href="@{/ubicacion/new}"
-                                    th:classappend="${username != 'admin'} ? 'disabled'">
-                                    Nueva Ubicación
-                                </a>
-                            </div>
 
                         </div>
 
