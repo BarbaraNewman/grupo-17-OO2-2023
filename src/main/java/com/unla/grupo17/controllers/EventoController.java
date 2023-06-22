@@ -2,6 +2,7 @@ package com.unla.grupo17.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -48,6 +49,7 @@ public class EventoController {
 		return mAV;
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/obtenerMetricas")
 	public RedirectView create() {
 		// Solicita Metricas SensorContenedor

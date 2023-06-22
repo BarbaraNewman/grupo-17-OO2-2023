@@ -196,7 +196,8 @@
                             <!-- Acciones -->
                             <div class="actions-section">
                                 <hr class="my-4">
-                                <a class="btn btn-primary" th:href="@{/evento/obtenerMetricas}">
+                                <a class="btn btn-primary" th:href="@{/evento/obtenerMetricas}" method="get"
+                                    th:classappend="${username != 'admin'} ? 'disabled'">
                                     Obtener Métricas
                                 </a>
                             </div>

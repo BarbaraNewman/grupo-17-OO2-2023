@@ -206,7 +206,7 @@
                                         <td th:text="${contenedor.capacidad}"></td>
                                         <td th:text="${contenedor.lleno}"></td>
                                         <td>
-											<a
+                                            <a
                                                 th:href="@{/dispositivo/contenedor/{idDispositivo}/eventos(idDispositivo=${contenedor.idDispositivo})}">Ver
                                                 Eventos</a>
                                             <a
@@ -223,7 +223,7 @@
                                 <hr class="my-4">
                                 <a class="btn btn-primary" th:href="@{/dispositivo/contenedor/new}"
                                     th:classappend="${username != 'admin'} ? 'disabled'">
-                                    Nuevo
+                                    Nuevo Contenedor
                                 </a>
                             </div>
 
