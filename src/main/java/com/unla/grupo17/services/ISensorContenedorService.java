@@ -6,7 +6,9 @@ import com.unla.grupo17.entities.SensorContenedor;
 
 public interface ISensorContenedorService {
 
-	List<SensorContenedor> getAll();
+	public abstract List<SensorContenedor> getAll();
+
+	public abstract List<SensorContenedor> getContenedorByActive();
 
 	public abstract SensorContenedor findByIdSensor(int idSensor);
 

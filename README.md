@@ -91,8 +91,8 @@ Cada integrante del equipo creará ramas separadas para desarrollar las funciona
 - Crear Base de Datos
 - Configurar Variables de Entorno
 - Compilar  proyecto
-- Ejecutar servidor
 - Cargar datos de prueba
+- Ejecutar servidor
 
 ## Instrucciones
 
@@ -104,7 +104,10 @@ Debe verificarse que se tenga instalado Java JDK 17 y compilar el proyecto previ
 
 ### Creacion de la base de datos:
 Ejecutar el script `\create-schema.sql`  
-Los datos de prueba se deben cargar despues de la compilación.
+Ejecutar el script `\insert-ALL-data.sql` despues de la compilación, esto incluye datos de prueba.
+
+Usuario y Contraseña; `admin` `admin`  
+Usuario y Contraseña; `auditor` `auditor`
 
 ### Configuracion de variables de entorno:
 En `\src\main\resources\application.yml`  

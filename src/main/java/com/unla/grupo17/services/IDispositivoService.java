@@ -6,7 +6,7 @@ import com.unla.grupo17.entities.Dispositivo;
 
 public interface IDispositivoService {
 
-	List<Dispositivo> getAll();
+	public abstract List<Dispositivo> getAll();
 
 	public abstract Dispositivo findByIdDispositivo(int idDispositivo);
 

@@ -1,19 +1,30 @@
 package com.unla.grupo17.controllers;
 
-import java.util.List;
-
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.grupo17.entities.Contenedor;
 import com.unla.grupo17.helpers.ViewRouteHelper;
+import com.unla.grupo17.models.ContenedorModel;
 import com.unla.grupo17.services.IContenedorService;
+import com.unla.grupo17.services.IEventoService;
+import com.unla.grupo17.services.IUbicacionService;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("dispositivo/contenedor")
@@ -23,21 +34,110 @@ public class ContenedorController {
 	@Qualifier("contenedorService")
 	private IContenedorService contenedorService;
 
+	@Autowired
+	@Qualifier("ubicacionService")
+	private IUbicacionService ubicacionService;
+
+	@Autowired
+	@Qualifier("eventoService")
+	private IEventoService eventoService;
+
+	private ModelMapper modelMapper = new ModelMapper();
+
+	// Obtencion del nombre de Usuario
+	private String getLoggedUsername() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		return auth.getName();
+	}
+
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_INDEX); // Vista
 
-		// Obtencion del nombre de Usuario
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
-		mAV.addObject("username", username);
-
-		List<Contenedor> contenedores = contenedorService.getAll();
-
-		mAV.addObject("contenedores", contenedores);
-		mAV.addObject("contenedor", new Contenedor());
+		mAV.addObject("username", getLoggedUsername());
+		mAV.addObject("contenedores", contenedorService.getAll());
 
 		return mAV;
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/new")
+	public ModelAndView create() {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_NEW);
+
+		mAV.addObject("username", getLoggedUsername());
+		mAV.addObject("contenedor", new Contenedor());
+		mAV.addObject("ubicaciones", ubicacionService.getAll());
+
+		return mAV;
+	}
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PostMapping("/create")
+	public ModelAndView create(@Valid @ModelAttribute("contenedor") ContenedorModel contenedorModel,
+			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_NEW);
+
+		mAV.addObject("username", getLoggedUsername());
+		mAV.addObject("ubicaciones", ubicacionService.getAll());
+
+		if (bindingResult.hasErrors()) {
+			mAV.addObject("error", "Ha ocurrido un error en la validación");
+		} else {
+			contenedorService.insertOrUpdate(modelMapper.map(contenedorModel, Contenedor.class));
+			redirectAttributes.addFlashAttribute("success", "Entidad creada correctamente");
+			return new ModelAndView(new RedirectView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_ROOT));
+		}
+
+		return mAV;
+	}
+
+	@GetMapping("/{idDispositivo}")
+	public ModelAndView get(@PathVariable("idDispositivo") int idDispositivo) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_UPDATE);
+
+		mAV.addObject("username", getLoggedUsername());
+		mAV.addObject("ubicaciones", ubicacionService.getAll());
+		mAV.addObject("contenedor", contenedorService.findByIdDispositivo(idDispositivo));
+		return mAV;
+	}
+
+	@GetMapping("/{idDispositivo}/eventos")
+	public ModelAndView getEventos(@PathVariable("idDispositivo") int idDispositivo) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_EVENTO);
+
+		mAV.addObject("username", getLoggedUsername());
+		mAV.addObject("eventos", eventoService.getEventosByDispositivo(idDispositivo));
+		mAV.addObject("idDispositivo", idDispositivo);
+
+		return mAV;
+	}
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PostMapping("/update")
+	public ModelAndView update(@Valid @ModelAttribute("contenedor") Contenedor contenedor, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_UPDATE);
+
+		mAV.addObject("username", getLoggedUsername());
+		mAV.addObject("ubicaciones", ubicacionService.getAll());
+		if (contenedor.getIdDispositivo() > 0) {
+			contenedor.setNombre(contenedor.getNombre());
+			contenedor.setUbicacion(contenedor.getUbicacion());
+			contenedor.setActivo(contenedor.isActivo());
+			contenedor.setReciclable(contenedor.isReciclable());
+			contenedor.setCapacidad(contenedor.getCapacidad());
+			contenedor.setFechaCreacion(contenedor.getFechaCreacion());
+
+		}
+
+		if (bindingResult.hasErrors()) {
+			redirectAttributes.addFlashAttribute("error", "Ha ocurrido un error en la validación");
+		} else {
+			contenedorService.insertOrUpdate(contenedor);
+			redirectAttributes.addFlashAttribute("success", "Entidad creada correctamente");
+			return new ModelAndView(new RedirectView(ViewRouteHelper.DISPOSITIVO_CONTENEDOR_ROOT));
+		}
+		return mAV;
+	}
 }

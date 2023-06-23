@@ -18,7 +18,7 @@ public class Ubicacion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUbicacion;
 
-	@NotBlank(message = "Nombre es un campo obligatorio")
+	@NotBlank(message = "El nombre no puede estar en blanco")
 	private String nombre;
 	private String descripcion;
 }

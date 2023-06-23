@@ -28,4 +28,9 @@ public class Evento {
 	
 	@CreationTimestamp
 	private LocalDateTime fechaHoraRegistro;
+	
+//	@CreationTimestamp
+//	private LocalDateTime createdAt;
+//	
+//	private LocalDateTime fechaHoraRegistro;
 }
