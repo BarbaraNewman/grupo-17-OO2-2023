@@ -30,7 +30,7 @@ public class SimSensorContenedor {
 
 		for (SensorContenedor sensorContenedor : metricasSensorContenedor) {
 			sensorContenedor.setNivelLlenado(generarNumeroAleatorio(0, 100));
-			sensorContenedor.setNivelBateria(generarNumeroAleatorio(0, sensorContenedor.getNivelBateria()));
+			sensorContenedor.setNivelBateria(generarNumeroAleatorio(0, 100));
 			sensorContenedorService.insertOrUpdate(sensorContenedor);
 		}
 
