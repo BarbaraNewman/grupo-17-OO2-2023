@@ -163,7 +163,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="ubicacion" class="form-label">Ubicación:</label>
-                                            <select class="form-control" id="ubicacion" th:field="*{ubicacion}"
+                                            <select class="form-select" id="ubicacion" th:field="*{ubicacion}"
                                                 required>
                                                 <option value="">Selecciona una ubicación</option>
                                                 <option th:each="ubicacion : ${ubicaciones}"

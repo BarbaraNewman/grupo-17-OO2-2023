@@ -147,20 +147,41 @@
                         </li>
                     </ol>
 
+                    <!-- Filtros -->
+                    <div class="mb-3">
+                        <hr class="my-4">
+                        <label class="form-label">Filtros</label>
+                        <select id="ubicacionSelect" class="form-select-sm inline"
+                            onchange="updateUbicacion(this.value)">
+                            <option value="">Seleccionar una Ubicación</option>
+                            <option th:each="ubicacion : ${ubicaciones}" th:value="${ubicacion.idUbicacion}"
+                                th:text="${ubicacion.idUbicacion + ' ' + ubicacion.nombre}"></option>
+                        </select>
+                        <select id="activoSelect" class="form-select-sm inline" onchange="updateActivo(this.value)">
+                            <option value="" selected>Seleccionar Dispositivos Activos/Inactivos</option>
+                            <option value="true">Dispositivos Activos</option>
+                            <option value="false">Dispositivos Inactivos</option>
+                        </select>
+
+                    </div>
+
                     <!-- Seccion Card Tabla -->
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
                             Eventos
                         </div>
+
+
                         <div class="card-body">
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Fecha de Registro</th>
-                                        <th>Descripción</th>
                                         <th>Dispositivo</th>
+                                        <th>Activo</th>
+                                        <th>Descripción</th>
                                         <th>Ubicación</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -169,8 +190,9 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Fecha de Registro</th>
-                                        <th>Descripción</th>
                                         <th>Dispositivo</th>
+                                        <th>Activo</th>
+                                        <th>Descripción</th>
                                         <th>Ubicación</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -181,9 +203,12 @@
                                         <td
                                             th:text="${#temporals.format(evento.fechaHoraRegistro, 'dd/MM/yy HH:mm:ss')}">
                                         </td>
-                                        <td th:text="${evento.descripcion}"></td>
                                         <td
                                             th:text="${evento.dispositivo.nombre + ' ' + evento.dispositivo.idDispositivo}">
+                                        </td>
+                                        <td
+                                            th:text="${evento.dispositivo.activo}">
+                                        <td th:text="${evento.descripcion}"></td>
                                         </td>
                                         <td th:text="${evento.dispositivo.ubicacion.nombre}"></td>
 
@@ -196,28 +221,6 @@
                             </table>
 
 
-
-                            <!-- Filtros -->
-
-
-                            <div class="mb-3">
-                                <hr class="my-4">
-                                <select id="ubicacionSelect" class="form-control"
-                                    onchange="updateUbicacion(this.value)">
-                                    <option value="">Selecciona una Ubicación</option>
-                                    <option th:each="ubicacion : ${ubicaciones}" th:value="${ubicacion.idUbicacion}"
-                                        th:text="${ubicacion.idUbicacion + ' ' + ubicacion.nombre}"></option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <select id="activoSelect" class="form-control" onchange="updateActivo(this.value)">
-                                    <option value="" selected>Selecciona Dispositivos Activos/Inactivos</option>
-                                    <option value="true">Dispositivos Activos</option>
-                                    <option value="false">Dispositivos Inactivos</option>
-                                </select>
-                            </div>
-
-
                             <!-- Acciones -->
                             <div class="actions-section">
                                 <hr class="my-4">
@@ -225,7 +228,6 @@
                                     th:classappend="${username != 'admin'} ? 'disabled'">
                                     Obtener Métricas
                                 </a>
-
 
 
                             </div>
