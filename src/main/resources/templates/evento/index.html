@@ -182,7 +182,9 @@
                                             th:text="${#temporals.format(evento.fechaHoraRegistro, 'dd/MM/yy HH:mm:ss')}">
                                         </td>
                                         <td th:text="${evento.descripcion}"></td>
-                                        <td th:text="${evento.dispositivo.nombre}"></td>
+                                        <td
+                                            th:text="${evento.dispositivo.nombre + ' ' + evento.dispositivo.idDispositivo}">
+                                        </td>
                                         <td th:text="${evento.dispositivo.ubicacion.nombre}"></td>
 
                                         <td>
@@ -193,6 +195,29 @@
                                 </tbody>
                             </table>
 
+
+
+                            <!-- Filtros -->
+
+
+                            <div class="mb-3">
+                                <hr class="my-4">
+                                <select id="ubicacionSelect" class="form-control"
+                                    onchange="updateUbicacion(this.value)">
+                                    <option value="">Selecciona una Ubicación</option>
+                                    <option th:each="ubicacion : ${ubicaciones}" th:value="${ubicacion.idUbicacion}"
+                                        th:text="${ubicacion.idUbicacion + ' ' + ubicacion.nombre}"></option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <select id="activoSelect" class="form-control" onchange="updateActivo(this.value)">
+                                    <option value="" selected>Selecciona Dispositivos Activos/Inactivos</option>
+                                    <option value="true">Dispositivos Activos</option>
+                                    <option value="false">Dispositivos Inactivos</option>
+                                </select>
+                            </div>
+
+
                             <!-- Acciones -->
                             <div class="actions-section">
                                 <hr class="my-4">
@@ -200,6 +225,9 @@
                                     th:classappend="${username != 'admin'} ? 'disabled'">
                                     Obtener Métricas
                                 </a>
+
+
+
                             </div>
 
                         </div>
@@ -234,6 +262,22 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="/js/datatables-simple-demo.js"></script>
+
+    <!-- Filters on Change-->
+    <script>
+        function updateActivo(activo) {
+            window.location.href = '/evento/dispositivos/' + activo;
+        }
+        function updateUbicacion(idUbicacion) {
+            if (idUbicacion) {
+                window.location.href = '/evento/ubicacion/' + idUbicacion;
+            } else {
+                //Si la ubicacion es vacia o null...
+                window.location.href = '/evento';
+            }
+        }
+    </script>
+
 </body>
 
 </html>

@@ -26,4 +26,6 @@ public interface IEventoService {
 
 	public abstract List<Evento> getEventosByDispositivo(int idDispositivo);
 
+	public abstract List<Evento> getEventosByDispositivoActivo(boolean activo);
+
 }

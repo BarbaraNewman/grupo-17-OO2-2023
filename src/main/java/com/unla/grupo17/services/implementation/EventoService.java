@@ -63,4 +63,8 @@ public class EventoService implements IEventoService {
 		return eventoRepository.findByDispositivo(idDispositivo);
 	}
 
+	public List<Evento> getEventosByDispositivoActivo(boolean activo) {
+		return eventoRepository.findByDispositivoActivo(activo);
+	}
+
 }
