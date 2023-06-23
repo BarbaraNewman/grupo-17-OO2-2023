@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 	<meta charset="utf-8" />
@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>UNLa IoT - Login</title>
+	<title>UNLa IoT - Iniciar sesión</title>
 	<link href="/css/styles.css" rel="stylesheet" />
 	<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
@@ -24,42 +24,42 @@
 								<div class="card-header">
 									<h1 class="text-center font-weight-light my-4">UNLa IoT</h1>
 									<hr class="my-4">
-									<h3 class="text-center font-weight-light my-4">Login</h3>
-									<!-- Seccion Login -->
-									<div class="card-body">
-										<!-- Formulario Login -->
-										<form th:action="@{/loginprocess}" method="post">
+								<!-- Seccion Login -->
+								<div class="card-body">
+									<!-- Formulario Login -->
+									<form th:action="@{/loginprocess}" method="post">
 
-											<div class="form-floating mb-3">
-												<input class="form-control" id="username" name="username" type="text"
-													placeholder="Username" />
-												<label for="username">Nombre de Usuario</label>
-											</div>
-											<div class="form-floating mb-3">
-												<input class="form-control" id="password" name="password"
-													type="password" placeholder="Password" />
-												<label for="inputPassword">Contraseña</label>
-											</div>
-											<!-- Boton Login -->
-											<div class="form-floating mb-3 d-grid">
-												<input class="btn btn-primary" id="submit" type="submit"
-													value="Iniciar sesión" />
-											</div>
-
-										</form>
-										<!-- Error de Credenciales -->
 										<div class="form-floating mb-3">
-											<div th:if="${error != null}" class="alert alert-danger">
-												Username o Contraseña incorrectos.
-											</div>
+											<input class="form-control" id="username" name="username" type="text"
+												placeholder="Username" />
+											<label for="username">Nombre de usuario</label>
+										</div>
+										<div class="form-floating mb-3">
+											<input class="form-control" id="password" name="password" type="password"
+												placeholder="Password" />
+											<label for="inputPassword">Contraseña</label>
+										</div>
+										
+										<!-- Boton Login -->
+										<div class="form-floating mb-3 d-grid">
+											<input class="btn btn-primary" id="submit" type="submit"
+												value="Iniciar sesión" />
 										</div>
 
+									</form>
+									<!-- Error de Credenciales -->
+									<div class="form-floating mb-3">
+										<div th:if="${error != null}" class="alert alert-danger">
+											Username o Contraseña incorrectos.
+										</div>
 									</div>
 
 								</div>
+
 							</div>
 						</div>
 					</div>
+				</div>
 			</main>
 		</div>
 
@@ -67,7 +67,7 @@
 			<footer class="py-4 bg-light mt-auto">
 				<div class="container-fluid px-4">
 					<div class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; Your Website 2023</div>
+						<div class="text-muted">Copyright &copy; UNLa 2023</div>
 						<div>
 							<a href="#">Privacy Policy</a>
 							&middot;
