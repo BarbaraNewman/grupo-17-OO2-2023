@@ -39,7 +39,7 @@ public class CronCreateEventosSensorContenedor {
 			Evento evento = new Evento();
 			evento.setFechaHoraRegistro(LocalDateTime.now());
 			evento.setDispositivo(sensorContenedor.getContenedor());
-			evento.setDescripcion(sensorContenedor.toString());
+			evento.setDescripcion(sensorContenedor.getMensajeEstado());
 
 			// Se actualiza el estado del contenedor en base a la lectura del sensor
 			if (sensorContenedor.getNivelLlenado() == 100)

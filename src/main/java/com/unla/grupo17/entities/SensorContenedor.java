@@ -38,4 +38,15 @@ public class SensorContenedor {
 	@JoinColumn(name = "idContenedor", nullable = true)
 	private Contenedor contenedor;
 
+	public String getMensajeEstado() {
+		return "Sensor Contenedor " + this.getIdSensor() + " | Nivel de llenado " + this.getNivelLlenado()
+				+ "% | Batería " + this.getNivelBateria() + "% (" + this.getDiasBateriaRestante() + " días restantes)";
+	}
+
+	public int getDiasBateriaRestante() {
+		int diasVidaUtil = (365 * 2); // 2 años
+		float diasRestantes = (this.getNivelBateria() / 100.0f) * diasVidaUtil;
+		return Math.round(diasRestantes);
+	}
+
 }
