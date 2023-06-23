@@ -39,8 +39,8 @@ public class SensorContenedor {
 	private Contenedor contenedor;
 
 	public String getMensajeEstado() {
-		return "Sensor Contenedor " + this.getIdSensor() + " | Nivel de llenado " + this.getNivelLlenado()
-				+ "% | Batería " + this.getNivelBateria() + "% (" + this.getDiasBateriaRestante() + " días restantes)";
+		return "Nivel de llenado " + this.getNivelLlenado() + "% | Batería " + this.getNivelBateria() + "% ("
+				+ this.getDiasBateriaRestante() + " días restantes)";
 	}
 
 	public int getDiasBateriaRestante() {
