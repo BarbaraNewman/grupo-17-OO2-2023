@@ -104,7 +104,7 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/">Alumbrado</a>
+                                <a class="nav-link" th:href="@{/dispositivo/alumbrado}">Alumbrado</a>
                             </nav>
                         </div>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
@@ -186,8 +186,7 @@
                                         <td
                                             th:text="${evento.dispositivo.nombre + ' ' + evento.dispositivo.idDispositivo}">
                                         </td>
-                                        <td
-                                            th:text="${evento.dispositivo.activo}">
+                                        <td th:text="${evento.dispositivo.activo}">
                                         <td th:text="${evento.descripcion}"></td>
                                         </td>
                                         <td th:text="${evento.dispositivo.ubicacion.nombre}"></td>

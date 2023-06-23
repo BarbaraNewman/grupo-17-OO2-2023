@@ -104,13 +104,13 @@
 						<div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="/">Alumbrado</a>
+								<a class="nav-link" th:href="@{/dispositivo/alumbrado}">Alumbrado</a>
 							</nav>
 						</div>
 						<div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" h:href="/">Parking</a>
+								<a class="nav-link" th:href="@{/dispositivo/parking}">Parking</a>
 							</nav>
 						</div>
 						<div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
@@ -164,14 +164,18 @@
 											<input type="text" class="form-control" id="nombre" th:field="*{nombre}"
 												placeholder="Ingrese el nombre" required />
 										</div>
-										
+										<!-- Evita perdida de datos -->
 										<input type="hidden" th:field="*{fechaCreacion}" />
 
-
+										<div class="mb-3">
+											<label for="capacidad" class="form-label">Capacidad:</label>
+											<input type="text" class="form-control" id="capacidad"
+												th:field="*{capacidad}" placeholder="Ingrese la capacidad" required>
+										</div>
+										
 										<div class="mb-3">
 											<label for="ubicacion" class="form-label">Ubicación:</label>
-											<select class="form-select" id="ubicacion" th:field="*{ubicacion}"
-												required>
+											<select class="form-select" id="ubicacion" th:field="*{ubicacion}" required>
 												<option value="">Seleccionar una ubicación</option>
 												<option th:each="ubicacion : ${ubicaciones}"
 													th:value="${ubicacion.idUbicacion}"
@@ -181,12 +185,6 @@
 											<div class="invalid-feedback"
 												th:if="${#fields.hasErrors('ubicacion.nombre')}"
 												th:errors="*{ubicacion.nombre}"></div>
-										</div>
-
-										<div class="mb-3">
-											<label for="capacidad" class="form-label">Capacidad:</label>
-											<input type="text" class="form-control" id="capacidad"
-												th:field="*{capacidad}" placeholder="Ingrese la capacidad" required>
 										</div>
 
 										<div class="mb-3">
