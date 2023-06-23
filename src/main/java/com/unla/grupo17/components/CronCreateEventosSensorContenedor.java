@@ -28,12 +28,13 @@ public class CronCreateEventosSensorContenedor {
 	// Tarea programada
 	@Scheduled(fixedDelay = (60 * 60 * 1000)) // 1hr = (60min * 60seg * 1000ms)
 	public void cronoLeerMetricasCrearEventos() {
-		leerMetricasCrearEventos();
+		leerMetricasCrearEventos(); // Lectura de metricas y creacion de eventos
 	}
 
 	public void leerMetricasCrearEventos() {
-		// Se leen las metricas
+		// Se leen todas las metricas de Contenedores Activos
 		List<SensorContenedor> metricasSensorContenedor = sensorContenedorService.getContenedorByActive();
+
 		// Por cada metrica, se crea un evento
 		for (SensorContenedor sensorContenedor : metricasSensorContenedor) {
 			Evento evento = new Evento();
@@ -41,7 +42,7 @@ public class CronCreateEventosSensorContenedor {
 			evento.setDispositivo(sensorContenedor.getContenedor());
 			evento.setDescripcion(sensorContenedor.getMensajeEstado());
 
-			// Se actualiza el estado del contenedor en base a la lectura del sensor
+			// Se actualiza el estado de llenado del contenedor en base al sensor
 			if (sensorContenedor.getNivelLlenado() == 100)
 				sensorContenedor.getContenedor().setLleno(true);
 			else
@@ -53,4 +54,5 @@ public class CronCreateEventosSensorContenedor {
 		}
 
 	}
+
 }

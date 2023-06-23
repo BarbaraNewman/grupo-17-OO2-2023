@@ -12,4 +12,6 @@ public interface ISensorContenedorService {
 
 	public abstract SensorContenedor findByIdSensor(int idSensor);
 
+	public abstract SensorContenedor insertOrUpdate(SensorContenedor sensorContenedor);
+
 }

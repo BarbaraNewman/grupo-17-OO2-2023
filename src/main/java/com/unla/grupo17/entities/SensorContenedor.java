@@ -44,7 +44,7 @@ public class SensorContenedor {
 	}
 
 	public int getDiasBateriaRestante() {
-		int diasVidaUtil = (365 * 2); // 2 años
+		int diasVidaUtil = (365); // Duracion de bateria al 100% = 1 Año
 		float diasRestantes = (this.getNivelBateria() / 100.0f) * diasVidaUtil;
 		return Math.round(diasRestantes);
 	}
