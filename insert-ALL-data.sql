@@ -92,7 +92,7 @@ VALUES
 (1, 1),
 (2, 2);
 
---------------------------------
+-------------------------------
 -- SENSOR CONTENEDOR METRICAS --
 
 INSERT INTO sensor_contenedor
@@ -104,7 +104,7 @@ VALUES
 ('4', 'Eco-Bits 20', '60', '42', '20-9876543212', '4'),
 ('5', 'Eco-Bits 20', '75', '20', '20-5432109876', '5');
 
---------------------------------
+-------------------------------
 -- MEDICIONES PARKING --
 insert into `grupo-17-oo2-2023`.medicion_parking(id_medicion_parking, created_at, hora, ocupado,
 id_dispositivo)
