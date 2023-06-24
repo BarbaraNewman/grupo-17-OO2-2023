@@ -104,7 +104,7 @@
 						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="/">Alumbrado</a>
+								<a class="nav-link" th:href="@{/dispositivo/alumbrado}">Alumbrado</a>
 							</nav>
 						</div>
 						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
@@ -168,13 +168,9 @@
 												readonly>
 										</div>
 
-										<div class="mb-3">
-											<label for="descripcion" class="form-label">Descripción:</label>
-											<input type="text" class="form-control" id="descripcion"
-												th:value="${evento.descripcion}" readonly>
-										</div>
-
+										<hr class="my-4">
 										<div class="row g-3">
+
 											<div class="col-6">
 												<label for="dispositivo" class="form-label">ID | Nombre de
 													Dispositivo:</label>
@@ -187,6 +183,12 @@
 												<input type="text" class="form-control" id="ubicacion"
 													th:value="${evento.dispositivo.ubicacion.nombre}" readonly>
 											</div>
+											<div class="mb-3">
+												<label for="descripcion" class="form-label">Descripción:</label>
+												<input type="text" class="form-control" id="descripcion"
+													th:value="${evento.descripcion}" readonly>
+											</div>
+
 										</div>
 
 
