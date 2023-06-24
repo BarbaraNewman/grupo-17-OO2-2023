@@ -104,7 +104,7 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/">Alumbrado</a>
+                                <a class="nav-link" th:href="@{/dispositivo/alumbrado}">Alumbrado</a>
                             </nav>
                         </div>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
@@ -147,20 +147,41 @@
                         </li>
                     </ol>
 
+                    <!-- Filtros -->
+                    <div class="mb-3">
+                        <hr class="my-4">
+                        <label class="form-label">Filtros</label>
+                        <select id="ubicacionSelect" class="form-select-sm inline"
+                            onchange="updateUbicacion(this.value)">
+                            <option value="">Seleccionar una Ubicación</option>
+                            <option th:each="ubicacion : ${ubicaciones}" th:value="${ubicacion.idUbicacion}"
+                                th:text="${ubicacion.idUbicacion + ' ' + ubicacion.nombre}"></option>
+                        </select>
+                        <select id="activoSelect" class="form-select-sm inline" onchange="updateActivo(this.value)">
+                            <option value="" selected>Seleccionar Dispositivos Activos/Inactivos</option>
+                            <option value="true">Dispositivos Activos</option>
+                            <option value="false">Dispositivos Inactivos</option>
+                        </select>
+
+                    </div>
+
                     <!-- Seccion Card Tabla -->
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
                             Eventos
                         </div>
+
+
                         <div class="card-body">
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Fecha de Registro</th>
-                                        <th>Descripción</th>
                                         <th>Dispositivo</th>
+                                        <th>Activo</th>
+                                        <th>Descripción</th>
                                         <th>Ubicación</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -169,8 +190,9 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Fecha de Registro</th>
-                                        <th>Descripción</th>
                                         <th>Dispositivo</th>
+                                        <th>Activo</th>
+                                        <th>Descripción</th>
                                         <th>Ubicación</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -181,8 +203,12 @@
                                         <td
                                             th:text="${#temporals.format(evento.fechaHoraRegistro, 'dd/MM/yy HH:mm:ss')}">
                                         </td>
+                                        <td
+                                            th:text="${evento.dispositivo.nombre + ' ' + evento.dispositivo.idDispositivo}">
+                                        </td>
+                                        <td th:text="${evento.dispositivo.activo}">
                                         <td th:text="${evento.descripcion}"></td>
-                                        <td th:text="${evento.dispositivo.nombre}"></td>
+                                        </td>
                                         <td th:text="${evento.dispositivo.ubicacion.nombre}"></td>
 
                                         <td>
@@ -193,6 +219,7 @@
                                 </tbody>
                             </table>
 
+
                             <!-- Acciones -->
                             <div class="actions-section">
                                 <hr class="my-4">
@@ -200,6 +227,18 @@
                                     th:classappend="${username != 'admin'} ? 'disabled'">
                                     Obtener Métricas
                                 </a>
+                                
+                                <form action="#"
+										th:action="@{/evento/deleteAll}"
+										onsubmit="return confirm('¿Estás seguro de que quieres eliminar todos los registros?');"
+										method="get">
+										<div class="mt-3">
+											<input type="submit" class="btn btn-danger" value="Eliminar todos los Eventos"
+												th:classappend="${username != 'admin'} ? 'disabled'" />
+										</div>
+									</form>
+
+
                             </div>
 
                         </div>
@@ -234,6 +273,22 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="/js/datatables-simple-demo.js"></script>
+
+    <!-- Filters on Change-->
+    <script>
+        function updateActivo(activo) {
+            window.location.href = '/evento/dispositivos/' + activo;
+        }
+        function updateUbicacion(idUbicacion) {
+            if (idUbicacion) {
+                window.location.href = '/evento/ubicacion/' + idUbicacion;
+            } else {
+                //Si la ubicacion es vacia o null...
+                window.location.href = '/evento';
+            }
+        }
+    </script>
+
 </body>
 
 </html>

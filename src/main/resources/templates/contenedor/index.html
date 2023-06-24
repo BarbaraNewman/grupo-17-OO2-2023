@@ -88,7 +88,6 @@
                             Eventos
                         </a>
 
-
                         <!-- SubMenu Dispositivos -->
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                             data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -105,7 +104,7 @@
                         <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/">Alumbrado</a>
+                                <a class="nav-link" th:href="@{/dispositivo/alumbrado}">Alumbrado</a>
                             </nav>
                         </div>
                         <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
@@ -225,6 +224,9 @@
                                     th:classappend="${username != 'admin'} ? 'disabled'">
                                     Nuevo Contenedor
                                 </a>
+                                <a class="btn btn-secondary" th:href="@{/sensor/contenedor}">
+                                    Ver Sensores
+                                </a>
                             </div>
 
 
@@ -232,6 +234,7 @@
 
                     </div>
             </main>
+
 
             <!-- Footer -->
             <footer class="py-4 bg-light mt-auto">

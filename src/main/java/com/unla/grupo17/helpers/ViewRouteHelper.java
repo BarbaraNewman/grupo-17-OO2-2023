@@ -22,7 +22,7 @@ public class ViewRouteHelper {
 	// ALUMBRADO
 	public final static String DISPOSITIVO_ALUMBRADO_INDEX = "/alumbrado/index";
 	public final static String DISPOSITIVO_ALUMBRADO_NEW = "/alumbrado/new";
-	public final static String DISPOSITIVO_ALUMBRADO_UPDATE = "/alumbrado/update";	
+	public final static String DISPOSITIVO_ALUMBRADO_UPDATE = "/alumbrado/update";
 
 	// CONTENEDOR
 	public final static String DISPOSITIVO_CONTENEDOR_INDEX = "/contenedor/index";
@@ -38,6 +38,11 @@ public class ViewRouteHelper {
 	public final static String USER_LOGIN = "user/login";
 	public final static String USER_LOGOUT = "user/logout";
 
+	// SENSORES
+	public final static String SENSOR_CONTENEDOR_INDEX = "/sensorcontenedor/index";
+	public final static String SENSOR_CONTENEDOR_NEW = "/sensorcontenedor/new";
+	public final static String SENSOR_CONTENEDOR_UPDATE = "/sensorcontenedor/update";
+
 	/////////////////
 	// REDIRECTION //
 	public final static String ROUTE_INDEX = "/index";
@@ -47,4 +52,6 @@ public class ViewRouteHelper {
 
 	public final static String DISPOSITIVO_CONTENEDOR_ROOT = "/dispositivo/contenedor";
 	public final static String DISPOSITIVO_PARKING_ROOT = "/dispositivo/parking";
+
+	public final static String SENSOR_CONTENEDOR_ROOT = "/sensor/contenedor";
 }
