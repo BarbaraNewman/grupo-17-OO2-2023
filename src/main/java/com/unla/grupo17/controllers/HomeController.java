@@ -13,24 +13,26 @@ import com.unla.grupo17.helpers.ViewRouteHelper;
 @Controller
 @RequestMapping("/")
 public class HomeController {
+
+	// Obtencion del nombre de Usuario
+	private String getLoggedUsername() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		return auth.getName();
+	}
+
 	// GET ejemplo SERVER/index
 	// Si se agrega .html al final, funciona igual
 	@GetMapping({ "/index", "/index.html" })
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.INDEX); // Vista
 
-		// Obtencion del nombre de Usuario
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
-
-		mAV.addObject("username", username);
+		mAV.addObject("username", getLoggedUsername());
 
 		return mAV;
 	}
 
-	// Redireccion al entrar a la direccion del server
-	@GetMapping("/")
-	public RedirectView redirectToHomeIndex() {
+	@GetMapping("")
+	public RedirectView toIndex() {
 		return new RedirectView(ViewRouteHelper.ROUTE_INDEX);
 	}
 
