@@ -24,6 +24,10 @@ public class EventoService implements IEventoService {
 		return eventoRepository.findAll();
 	}
 
+	public void deleteAll() {
+		eventoRepository.deleteAll();
+	}
+
 	@Override
 	public List<Evento> getAllByOrderByFechaHoraRegistroDesc() {
 		return eventoRepository.findAllByOrderByFechaHoraRegistroDesc();

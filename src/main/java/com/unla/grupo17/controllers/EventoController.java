@@ -89,4 +89,13 @@ public class EventoController {
 		return mAV;
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/deleteAll")
+	public RedirectView deleteAll() {
+		// Elimina todos los eventos
+		eventoService.deleteAll();
+
+		return new RedirectView(ViewRouteHelper.EVENTO_ROOT);
+	}
+
 }

@@ -227,6 +227,16 @@
                                     th:classappend="${username != 'admin'} ? 'disabled'">
                                     Obtener Métricas
                                 </a>
+                                
+                                <form action="#"
+										th:action="@{/evento/deleteAll}"
+										onsubmit="return confirm('¿Estás seguro de que quieres eliminar todos los registros?');"
+										method="get">
+										<div class="mt-3">
+											<input type="submit" class="btn btn-danger" value="Eliminar todos los Eventos"
+												th:classappend="${username != 'admin'} ? 'disabled'" />
+										</div>
+									</form>
 
 
                             </div>

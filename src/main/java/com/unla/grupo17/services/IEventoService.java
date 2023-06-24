@@ -10,6 +10,8 @@ public interface IEventoService {
 
 	public abstract List<Evento> getAll();
 
+	public abstract void deleteAll();
+
 	public abstract List<Evento> getAllByOrderByFechaHoraRegistroDesc();
 
 	public abstract Evento findByIdEvento(int idEvento);
