@@ -71,8 +71,7 @@ Cada integrante del equipo creará ramas separadas para desarrollar las funciona
 - [Spinazzola Luciano Nicolas. [Sanitarios]](https://github.com/LucianoSpinazzola)
 
 ### Videos de demostración  :
-- *Proximamente*
-
+- [Presentacion de Barbara Newman y Sergio Robles. ](https://youtu.be/asVmbaAXafE)
 
 ## Diagrama de Clases
 <img src="Diagrama de Clases - Grupo 17.png"  title="Diagrama de Clases UML">
