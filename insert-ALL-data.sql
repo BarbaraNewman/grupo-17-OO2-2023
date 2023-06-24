@@ -5,7 +5,6 @@ CREATE DATABASE IF NOT EXISTS `grupo-17-oo2-2023`;
 
 use `grupo-17-oo2-2023`;
 
-
 -----------
 -- USERS --
 
@@ -66,9 +65,13 @@ VALUES
 (2, '2023-06-14 11:15:00', '2023-06-14 11:00:00', 'Contenedor', 2),
 (3, '2023-06-14 12:45:00', '2023-06-14 12:30:00', 'Contenedor', 1),
 (4, '2023-06-14 14:20:00', '2023-06-14 14:15:00', 'Contenedor', 3),
-(5, '2023-06-14 15:40:00', '2023-06-14 15:30:00', 'Contenedor', 2),
+(5, '2023-06-14 15:40:00', '2023-06-14 15:30:00', 'Contenedor', 2);
+
 
 -- DISPOSITIVO PARKING--
+INSERT INTO dispositivo
+(`id_dispositivo`, `activo`, `fecha_actualizacion`, `fecha_creacion`, `nombre`, `id_ubicacion`)
+VALUES
 (6, true, '2023-06-14 20:30:00', '2023-06-14 20:00:00', 'Parking 1', 19),
 (7, true, '2023-06-14 21:15:00', '2023-06-14 21:00:00', 'Parking 2', 1);
 
