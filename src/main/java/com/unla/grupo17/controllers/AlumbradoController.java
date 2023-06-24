@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.grupo17.entities.Alumbrado;
+import com.unla.grupo17.entities.Contenedor;
 import com.unla.grupo17.helpers.ViewRouteHelper;
 import com.unla.grupo17.services.IAlumbradoService;
 import com.unla.grupo17.services.IUbicacionService;
@@ -25,7 +26,7 @@ import com.unla.grupo17.services.IUbicacionService;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/dispositivo/alumbrado")
+@RequestMapping("dispositivo/alumbrado")
 public class AlumbradoController {
 	@Autowired
 	@Qualifier("alumbradoService")
@@ -34,7 +35,7 @@ public class AlumbradoController {
 	@Autowired
 	@Qualifier("ubicacionService")
 	private IUbicacionService ubicacionService;
-
+	
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DISPOSITIVO_ALUMBRADO_INDEX);
@@ -84,5 +85,4 @@ public class AlumbradoController {
 		mAV.addObject("alumbrado", alumbradoService.findByIdDispositivo(idDispositivo));
 		return mAV;
 	}
-
 }
