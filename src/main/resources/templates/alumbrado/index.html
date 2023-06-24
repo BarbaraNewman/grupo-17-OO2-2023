@@ -99,13 +99,13 @@
                         <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link active" th:href="@{/dispositivo/contenedor}">Contenedores</a>
+                                <a class="nav-link" th:href="@{/dispositivo/contenedor}">Contenedores</a>
                             </nav>
                         </div>
                         <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link active" th:href="@{/dispositivo/alumbrado}">Alumbrado</a>
+                                <a class="nav-link active" href="/">Alumbrado</a>
                             </nav>
                         </div>
                         <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
@@ -191,9 +191,9 @@
                                         <td th:text="${alumbrado.idDispositivo}"></td>
                                         <td th:text="${alumbrado.nombre}"></td>
                                         <td th:text="${alumbrado.ubicacion.nombre}"></td>
-                                    	<td th:text="${alumbrado.fechaCreacion}"></td>
-										<td th:text="${alumbrado.fechaActualizacion}"></td>
-										<td th:text="${alumbrado.activo}"></td>
+                                        <td th:text="${alumbrado.fechaCreacion}"></td>
+                                        <td th:text="${alumbrado.fechaActualizacion}"></td>
+                                        <td th:text="${alumbrado.activo}"></td>
 
                                         <td th:text="${alumbrado.estadoLuces}"></td>
                                         <td th:text="${alumbrado.controlDeAlumbrado}"></td>
@@ -207,7 +207,7 @@
 
                             </table>
 
-             					<!-- Acciones -->
+                            <!-- Acciones -->
                             <div class="actions-section">
                                 <hr class="my-4">
                                 <a class="btn btn-primary" th:href="@{/dispositivo/alumbrado/new}">

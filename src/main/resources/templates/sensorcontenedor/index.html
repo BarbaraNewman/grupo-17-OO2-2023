@@ -83,7 +83,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Auditoría
                         </a>
-                        <a class="nav-link active" th:href="@{/evento}">
+                        <a class="nav-link" th:href="@{/evento}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Eventos
                         </a>
@@ -95,25 +95,25 @@
                             Dispositivos
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                        <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" th:href="@{/dispositivo/contenedor}">Contenedores</a>
+                                <a class="nav-link active" th:href="@{/dispositivo/contenedor}">Contenedores</a>
                             </nav>
                         </div>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                        <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" th:href="@{/dispositivo/alumbrado}">Alumbrado</a>
                             </nav>
                         </div>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                        <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" th:href="@{/dispositivo/parking}">Parking</a>
                             </nav>
                         </div>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                        <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" h:href="/">Sanitarios</a>
@@ -140,7 +140,7 @@
             <!-- Main Content-->
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Eventos de Dispositivo <span th:text="${idDispositivo}"></span></h1>
+                    <h1 class="mt-4">Sensores de Contenedor</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active"
                             th:text="${'Fecha: ' + #temporals.format(#temporals.createNow(), 'dd/MM/yyyy HH:mm:ss')}">
@@ -151,59 +151,69 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            Eventos
+                            Sensores de Contenedor
                         </div>
                         <div class="card-body">
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Fecha de Registro</th>
-                                        <th>Dispositivo</th>
-                                        <th>Activo</th>
-                                        <th>Descripción</th>
-                                        <th>Ubicación</th>
+                                        <th>Modelo</th>
+                                        <th>Nro de Serie</th>
+                                        <th>Batería</th>
+                                        <th>Llenado</th>
+                                        <th>Contenedor</th>
+
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Fecha de Registro</th>
-                                        <th>Dispositivo</th>
-                                        <th>Activo</th>
-                                        <th>Descripción</th>
-                                        <th>Ubicación</th>
+                                        <th>Modelo</th>
+                                        <th>Nro de Serie</th>
+                                        <th>Batería</th>
+                                        <th>Llenado</th>
+                                        <th>Contenedor</th>
+
                                         <th>Acciones</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr th:each="evento : ${eventos}">
-                                        <td th:text="${evento.idEvento}"></td>
-                                        <td
-                                            th:text="${#temporals.format(evento.fechaHoraRegistro, 'dd/MM/yy HH:mm:ss')}">
-                                        </td>
-                                        <td
-                                            th:text="${evento.dispositivo.nombre + ' ' + evento.dispositivo.idDispositivo}">
-                                        </td>
-                                        <td th:text="${evento.dispositivo.activo}">
-                                        <td th:text="${evento.descripcion}"></td>
-                                        </td>
-                                        <td th:text="${evento.dispositivo.ubicacion.nombre}"></td>
+                                    <tr th:each="sensorContenedor : ${sensores}">
+                                        <td th:text="${sensorContenedor.idSensor}"></td>
+                                        <td th:text="${sensorContenedor.modelo}"></td>
+                                        <td th:text="${sensorContenedor.numeroSerie}"></td>
+                                        <td th:text="${sensorContenedor.nivelBateria + '%'}"></td>
+                                        <td th:text="${sensorContenedor.nivelLlenado + '%'}"></td>
+                                        <td th:text="${sensorContenedor?.contenedor != null ?
+                                        (sensorContenedor.contenedor.nombre + ' ' + sensorContenedor.contenedor.idDispositivo) : 'Sin Asignar'}"></td>
 
                                         <td>
-                                            <a th:href="@{/evento/{idEvento}(idEvento=${evento.idEvento})}">Ver
+                                            <a
+                                                th:href="@{/sensor/contenedor/{idSensor}(idSensor=${sensorContenedor.idSensor})}">Ver
                                                 Detalles</a>
                                         </td>
                                     </tr>
                                 </tbody>
+
                             </table>
+
+                            <!-- Acciones -->
+                            <div class="actions-section">
+                                <hr class="my-4">
+                                <a class="btn btn-primary" th:href="@{/sensor/contenedor/new}"
+                                    th:classappend="${username != 'admin'} ? 'disabled'">
+                                    Nuevo Sensor
+                                </a>
+                            </div>
 
 
                         </div>
 
                     </div>
             </main>
+
 
             <!-- Footer -->
             <footer class="py-4 bg-light mt-auto">

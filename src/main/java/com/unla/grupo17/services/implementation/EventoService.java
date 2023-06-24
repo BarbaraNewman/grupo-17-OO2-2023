@@ -24,6 +24,10 @@ public class EventoService implements IEventoService {
 		return eventoRepository.findAll();
 	}
 
+	public void deleteAll() {
+		eventoRepository.deleteAll();
+	}
+
 	@Override
 	public List<Evento> getAllByOrderByFechaHoraRegistroDesc() {
 		return eventoRepository.findAllByOrderByFechaHoraRegistroDesc();
@@ -61,6 +65,10 @@ public class EventoService implements IEventoService {
 	@Override
 	public List<Evento> getEventosByDispositivo(int idDispositivo) {
 		return eventoRepository.findByDispositivo(idDispositivo);
+	}
+
+	public List<Evento> getEventosByDispositivoActivo(boolean activo) {
+		return eventoRepository.findByDispositivoActivo(activo);
 	}
 
 }
