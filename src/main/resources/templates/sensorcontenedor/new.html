@@ -140,7 +140,7 @@
             <!-- Main Content-->
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Contenedores</h1>
+                    <h1 class="mt-4">Nuevo Sensor</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active"
                             th:text="${'Fecha: ' + #temporals.format(#temporals.createNow(), 'dd/MM/yyyy HH:mm:ss')}">
@@ -148,93 +148,52 @@
                     </ol>
 
                     <!-- Seccion Card Tabla -->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            Contenedores
-                        </div>
-                        <div class="card-body">
-                            <table id="datatablesSimple">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nombre</th>
-                                        <th>Ubicación</th>
-                                        <th>Fecha de Creación</th>
-                                        <th>Fecha de Actualización</th>
-                                        <th>Activo</th>
-
-                                        <th>Reciclable</th>
-                                        <th>Capacidad</th>
-                                        <th>Lleno</th>
-
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nombre</th>
-                                        <th>Ubicacion</th>
-                                        <th>Fecha de Creación</th>
-                                        <th>Fecha de Actualización</th>
-                                        <th>Activo</th>
-
-                                        <th>Reciclable</th>
-                                        <th>Capacidad</th>
-                                        <th>Lleno</th>
-
-                                        <th>Acciones</th>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <tr th:each="contenedor : ${contenedores}">
-                                        <td th:text="${contenedor.idDispositivo}"></td>
-                                        <td th:text="${contenedor.nombre}"></td>
-                                        <td th:text="${contenedor.ubicacion.nombre}"></td>
-                                        <td
-                                            th:text="${#temporals.format(contenedor.fechaCreacion, 'dd/MM/yy HH:mm:ss')}">
-                                        </td>
-                                        <td
-                                            th:text="${#temporals.format(contenedor.fechaActualizacion, 'dd/MM/yy HH:mm:ss')}">
-                                        </td>
-
-                                        <td th:text="${contenedor.activo}"></td>
-
-                                        <td th:text="${contenedor.reciclable}"></td>
-                                        <td th:text="${contenedor.capacidad}"></td>
-                                        <td th:text="${contenedor.lleno}"></td>
-                                        <td>
-                                            <a
-                                                th:href="@{/dispositivo/contenedor/{idDispositivo}/eventos(idDispositivo=${contenedor.idDispositivo})}">Ver
-                                                Eventos</a>
-                                            <a
-                                                th:href="@{/dispositivo/contenedor/{idDispositivo}(idDispositivo=${contenedor.idDispositivo})}">Ver
-                                                Detalles</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-
-                            </table>
-
-                            <!-- Acciones -->
-                            <div class="actions-section">
-                                <hr class="my-4">
-                                <a class="btn btn-primary" th:href="@{/dispositivo/contenedor/new}"
-                                    th:classappend="${username != 'admin'} ? 'disabled'">
-                                    Nuevo Contenedor
-                                </a>
-                                <a class="btn btn-secondary" th:href="@{/sensor/contenedor}">
-                                    Ver Sensores
-                                </a>
+                    <div class="container-fluid px-4">
+                        <div class="row justify-content">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="#" th:action="@{/sensor/contenedor/create}"
+                                        th:object="${sensorContenedor}" method="post">
+                                        <div class="mb-3">
+                                            <label for="modelo" class="form-label">Modelo:</label>
+                                            <input type="text" class="form-control" id="nombre" th:field="*{modelo}"
+                                                placeholder="Ingrese el modelo" required>
+                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('modelo')}"
+                                                th:errors="*{modelo}"></div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="numeroSerie" class="form-label">Nro de Serie:</label>
+                                            <input type="text" class="form-control" id="capacidad"
+                                                th:field="*{numeroSerie}" placeholder="Ingrese el Nro de Serie" required>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="contenedor" class="form-label">Contenedor:</label>
+                                            <select class="form-select" id="contenedor" th:field="*{contenedor}">
+                                                <option value="">Seleccionar un contenedor</option>
+                                                <option th:each="contenedor : ${contenedores}"
+                                                    th:value="${contenedor.idDispositivo}"
+                                                    th:text="${contenedor.nombre + ' ' + contenedor.idDispositivo}">
+                                                </option>
+                                            </select>
+                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('contenedor')}"
+                                                th:errors="*{contenedor}"></div>
+                                        </div>
+                                        
+                                       
+                                        <button type="submit" class="btn btn-primary">Crear Sensor</button>
+                                    </form>
+                                </div>
                             </div>
-
-
                         </div>
-
                     </div>
-            </main>
+                </div>
 
+
+
+
+            </main>
 
             <!-- Footer -->
             <footer class="py-4 bg-light mt-auto">

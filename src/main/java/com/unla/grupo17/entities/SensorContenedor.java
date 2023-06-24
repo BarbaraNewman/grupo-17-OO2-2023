@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,6 +25,7 @@ public class SensorContenedor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idSensor;
 	private String modelo;
+	@NotNull(message = "El nro de Serie no puede ser nulo")
 	private String numeroSerie;
 
 	@Min(value = 0, message = "El nivel de batería debe ser igual o mayor a 0.")
