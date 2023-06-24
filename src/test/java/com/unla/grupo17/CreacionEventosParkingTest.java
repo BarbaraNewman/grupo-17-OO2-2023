@@ -28,23 +28,6 @@ class CreacionEventosParkingTest {
 	@Autowired
 	private IEventoService eventoService;
 
-	// @Test
-	// void contextLoads() {}
-//
-//	@Test
-//	public void leerMetricas() {
-//		// Lectura y creacion de Eventos para el parking
-//		List<MedicionParking> medicionesParking = medicionParkingService.getAll();
-//		for (MedicionParking medicionParking : medicionesParking) {
-//			Evento evento = new Evento();
-//			evento.setFechaHoraRegistro(LocalDateTime.now());
-//			evento.setDescripcion(medicionParking.toString());
-//			evento.setDispositivo(medicionParking.getParking());
-//			eventoService.insertOrUpdate(evento);
-//
-//		}
-//	}
-
 	@Test
 	public void leerMetricas() {
 		// Lectura y creacion de Eventos para el parking
@@ -53,17 +36,11 @@ class CreacionEventosParkingTest {
 		for (MedicionParking medicionParking : medicionesParking) {
 			if (this.existeEventoXMetrica(medicionParking) == false) {
 				Evento evento = new Evento();
-				evento.setFechaHoraRegistro(LocalDateTime.now());
 				if (medicionParking.isOcupado() == true) {
-					evento.setDescripcion("Se ocupo el lugar nro: " + medicionParking.getParking().getNroLugar());
+					evento.setDescripcion("Se ocupo el lugar");
 				} else {
-					evento.setDescripcion("Se libero el lugar nro: " + medicionParking.getParking().getNroLugar());
+					evento.setDescripcion("Se libero el lugar");
 				}
-//				if (medicionParking.isOcupado() == true) {
-//					evento.setDescripcion("Se ocupo el lugar");
-//				} else {
-//					evento.setDescripcion("Se libero el lugar");
-//				}
 				evento.setDispositivo(medicionParking.getParking());
 				eventoService.insertOrUpdate(evento);
 			}
@@ -73,16 +50,12 @@ class CreacionEventosParkingTest {
 
 	public boolean existeEventoXMetrica(MedicionParking medicionParking) {
 
-		List<Evento> eventos = eventoService.getAll();
-
+		List<Evento> eventosParking = eventoService.getEventosByDispositivo(medicionParking.getParking());
+		List<MedicionParking> medicionesParkingAux = medicionParkingService
+				.findByDispositivo(medicionParking.getParking().getIdDispositivo());
 		boolean existeEvento = false;
-		
-		List<Evento> eventosAux = eventoService.findByUltimoIdDispositivoEvento(medicionParking.getParking().getIdDispositivo());
-		
-		Evento eventoAux = eventosAux.get(eventosAux.size() - 1);
-		
-		if ((eventoAux.getDescripcion().equals("Se ocupo el lugar") && medicionParking.isOcupado() == true)
-				|| (eventoAux.getDescripcion().equals("Se libero el lugar") && medicionParking.isOcupado() == false)) {
+
+		if (eventosParking.size() == medicionesParkingAux.size()) {
 			existeEvento = true;
 		}
 

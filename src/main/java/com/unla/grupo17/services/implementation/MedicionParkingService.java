@@ -27,4 +27,9 @@ public class MedicionParkingService implements IMedicionParkingService {
 		return medicionParkingRepository.findByIdMedicionParking(idMedicionParking);
 	}
 
+	@Override
+	public List<MedicionParking> findByDispositivo(int idDispositivo) {
+		return medicionParkingRepository.findByDispositivo(idDispositivo);
+	}
+
 }

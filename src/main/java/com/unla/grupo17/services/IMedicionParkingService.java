@@ -10,5 +10,7 @@ public interface IMedicionParkingService {
 
 	public abstract MedicionParking findByIdMedicionParking(int idMedicionParking);
 	
+	public abstract List<MedicionParking> findByDispositivo(int idDispositivo);
+	
 
 }
