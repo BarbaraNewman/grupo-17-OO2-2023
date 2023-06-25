@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.grupo17.entities.Alumbrado;
+import com.unla.grupo17.entities.Contenedor;
 import com.unla.grupo17.helpers.ViewRouteHelper;
 import com.unla.grupo17.services.IAlumbradoService;
 import com.unla.grupo17.services.IUbicacionService;
