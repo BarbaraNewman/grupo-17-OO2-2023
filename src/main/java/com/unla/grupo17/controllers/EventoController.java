@@ -67,4 +67,35 @@ public class EventoController {
 		return mAV;
 	}
 
+	@GetMapping("/dispositivos/{activo}")
+	public ModelAndView getDispositivoActivo(@PathVariable("activo") boolean activo) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.EVENTO_INDEX);
+
+		mAV.addObject("username", getLoggedUsername());
+		mAV.addObject("eventos", eventoService.getEventosByDispositivoActivo(activo));
+		mAV.addObject("ubicaciones", ubicacionService.getAll());
+
+		return mAV;
+	}
+
+	@GetMapping("/ubicacion/{idUbicacion}")
+	public ModelAndView getUbicacion(@PathVariable("idUbicacion") int idUbicacion) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.EVENTO_INDEX);
+
+		mAV.addObject("username", getLoggedUsername());
+		mAV.addObject("eventos", eventoService.getEventosByUbicacion(idUbicacion));
+		mAV.addObject("ubicaciones", ubicacionService.getAll());
+
+		return mAV;
+	}
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/deleteAll")
+	public RedirectView deleteAll() {
+		// Elimina todos los eventos
+		eventoService.deleteAll();
+
+		return new RedirectView(ViewRouteHelper.EVENTO_ROOT);
+	}
+
 }
