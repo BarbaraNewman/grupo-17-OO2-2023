@@ -81,5 +81,18 @@ public class ParkingController {
 		mAV.addObject("parking", parkingService.findByIdDispositivo(idDispositivo));
 		return mAV;
 	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PostMapping("/update")
+	public RedirectView update(@Valid @ModelAttribute("parking") Parking parking) {
+		if (parking.getIdDispositivo() > 0) {
+			parking.setNombre(parking.getNombre());
+			parking.setUbicacion(parking.getUbicacion());
+			parking.setActivo(parking.isActivo());
+		}
+		parkingService.insertOrUpdate(parking);
+		return new RedirectView(ViewRouteHelper.DISPOSITIVO_PARKING_ROOT);
+	}
+
 
 }
