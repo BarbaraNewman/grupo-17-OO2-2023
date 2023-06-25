@@ -32,16 +32,16 @@ public class CronCreateEventosSensorContenedor {
 	}
 
 	public void leerMetricasCrearEventos() {
-		// Se leen las metricas
+		// Se leen todas las metricas de Contenedores Activos
 		List<SensorContenedor> metricasSensorContenedor = sensorContenedorService.getContenedorByActive();
 		// Por cada metrica, se crea un evento
 		for (SensorContenedor sensorContenedor : metricasSensorContenedor) {
 			Evento evento = new Evento();
 			evento.setFechaHoraRegistro(LocalDateTime.now());
 			evento.setDispositivo(sensorContenedor.getContenedor());
-			evento.setDescripcion(sensorContenedor.toString());
+			evento.setDescripcion(sensorContenedor.getMensajeEstado());
 
-			// Se actualiza el estado del contenedor en base a la lectura del sensor
+			// Se actualiza el estado de llenado del contenedor en base al sensor
 			if (sensorContenedor.getNivelLlenado() == 100)
 				sensorContenedor.getContenedor().setLleno(true);
 			else
