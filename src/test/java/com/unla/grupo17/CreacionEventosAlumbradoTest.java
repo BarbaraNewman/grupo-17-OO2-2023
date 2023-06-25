@@ -55,7 +55,7 @@ public class CreacionEventosAlumbradoTest {
 			 */
 			if (sensorAlumbrado.getTiempoApagadoEncendido() == 11
 					|| sensorAlumbrado.getTiempoApagadoEncendido() == 13) {
-				sensorAlumbrado.getAlumbrado().setControlDeAlumbrado("Funcionando Correctamente");
+				sensorAlumbrado.getAlumbrado().setControlDeAlumbrado("Funcionando normalmente");
 			} else {
 				sensorAlumbrado.getAlumbrado().setControlDeAlumbrado("Mantenimiento Requerido");
 			}
