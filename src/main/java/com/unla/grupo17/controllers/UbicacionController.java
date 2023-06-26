@@ -20,6 +20,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.grupo17.entities.Ubicacion;
 import com.unla.grupo17.helpers.ViewRouteHelper;
+import com.unla.grupo17.services.IEventoService;
 import com.unla.grupo17.services.IUbicacionService;
 
 import jakarta.validation.Valid;
@@ -32,17 +33,22 @@ public class UbicacionController {
 	@Qualifier("ubicacionService")
 	private IUbicacionService ubicacionService;
 
+	@Autowired
+	@Qualifier("eventoService")
+	private IEventoService eventoService;
+
+	// Obtencion del nombre de Usuario
+	private String getLoggedUsername() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		return auth.getName();
+	}
+
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.UBICACION_INDEX); // Vista
 
-		// Obtencion del nombre de Usuario
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
-		mAV.addObject("username", username);
-
+		mAV.addObject("username", getLoggedUsername());
 		List<Ubicacion> ubicaciones = ubicacionService.getAll();
-
 		mAV.addObject("ubicaciones", ubicaciones);
 		mAV.addObject("ubicacion", new Ubicacion());
 
@@ -53,6 +59,8 @@ public class UbicacionController {
 	@GetMapping("/new")
 	public ModelAndView create() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.UBICACION_NEW);
+
+		mAV.addObject("username", getLoggedUsername());
 		mAV.addObject("ubicacion", new Ubicacion());
 		return mAV;
 	}
@@ -63,12 +71,14 @@ public class UbicacionController {
 			RedirectAttributes redirectAttributes) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.UBICACION_NEW);
 
+		mAV.addObject("username", getLoggedUsername());
+
 		if (bindingResult.hasErrors()) {
 			mAV.addObject("error", "Ha ocurrido un error en la validación");
 		} else {
 			ubicacionService.insertOrUpdate(ubicacion);
 			redirectAttributes.addFlashAttribute("success", "Entidad creada correctamente");
-			return new ModelAndView(new RedirectView(ViewRouteHelper.UBICACION_ROOT, true, false));
+			return new ModelAndView(new RedirectView(ViewRouteHelper.UBICACION_ROOT));
 		}
 
 		return mAV;
@@ -77,13 +87,15 @@ public class UbicacionController {
 	@GetMapping("/{idUbicacion}")
 	public ModelAndView get(@PathVariable("idUbicacion") int idUbicacion) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.UBICACION_UPDATE);
+
+		mAV.addObject("username", getLoggedUsername());
 		mAV.addObject("ubicacion", ubicacionService.findByIdUbicacion(idUbicacion));
 		return mAV;
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/update")
-	public RedirectView update(@ModelAttribute("ubicacion") Ubicacion ubicacion) {
+	public RedirectView update(@Valid @ModelAttribute("ubicacion") Ubicacion ubicacion) {
 		if (ubicacion.getIdUbicacion() > 0) {
 			ubicacion.setNombre(ubicacion.getNombre());
 			ubicacion.setDescripcion(ubicacion.getDescripcion());
@@ -97,6 +109,16 @@ public class UbicacionController {
 	public RedirectView delete(@PathVariable("idUbicacion") int idUbicacion) {
 		ubicacionService.remove(idUbicacion);
 		return new RedirectView(ViewRouteHelper.UBICACION_ROOT);
+	}
+
+	@GetMapping("/{idUbicacion}/eventos")
+	public ModelAndView getEventos(@PathVariable("idUbicacion") int idUbicacion) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.UBICACION_EVENTO);
+
+		mAV.addObject("username", getLoggedUsername());
+		mAV.addObject("eventos", eventoService.getEventosByUbicacion(idUbicacion));
+
+		return mAV;
 	}
 
 }
