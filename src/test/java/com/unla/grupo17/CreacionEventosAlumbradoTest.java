@@ -22,7 +22,8 @@ public class CreacionEventosAlumbradoTest {
 
 	@Test
 	public void leerMetricas() {
-		//El sensor alumbrado se ingresa a mano en un script en la bdd
+		
+		//Los datos del sensorAlumbrado se ingresa a mano en la base de datos.
 		
 		List<SensorAlumbrado> metricasSensorAlumbrado = sensorAlumbradoService.getAll();
 		for (SensorAlumbrado sensorAlumbrado : metricasSensorAlumbrado) {
