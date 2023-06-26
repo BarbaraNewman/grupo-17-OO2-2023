@@ -56,7 +56,7 @@ VALUES
 
 
 -----------------
--- DISPOSITIVO --
+-- DISPOSITIVO CONTENEDOR --
 
 INSERT INTO dispositivo
 (`id_dispositivo`, `fecha_actualizacion`, `fecha_creacion`, `nombre`, `id_ubicacion`)
@@ -74,6 +74,17 @@ INSERT INTO dispositivo
 VALUES
 (6, true, '2023-06-14 20:30:00', '2023-06-14 20:00:00', 'Parking 1', 19),
 (7, true, '2023-06-14 21:15:00', '2023-06-14 21:00:00', 'Parking 2', 1);
+
+
+-- DISPOSITIVO ALUMBRADO--
+INSERT INTO dispositivo
+(`id_dispositivo`, `fecha_actualizacion`, `fecha_creacion`, `nombre`, `id_ubicacion`)
+VALUES
+(8, '2023-06-14 16:00:00', '2023-06-14 10:01:00', 'Alumbrado', 24),
+(9, '2023-06-14 16:30:00', '2023-06-14 11:02:00', 'Alumbrado', 25),
+(10, '2023-06-14 17:00:00', '2023-06-14 12:03:00', 'Alumbrado', 26),
+(11, '2023-06-14 17:20:00', '2023-06-14 14:04:00', 'Alumbrado', 27),
+(12, '2023-06-14 18:40:00', '2023-06-14 15:05:00', 'Alumbrado', 28);
 
 ----------------
 -- CONTENEDOR --
@@ -94,6 +105,17 @@ INSERT INTO `grupo-17-oo2-2023`.parking
 VALUES
 (1, 6),
 (2, 7);
+
+----------------
+-- ALUMBRADO--
+INSERT INTO alumbrado
+(control_de_alumbrado, estado_luces, id_dispositivo)
+VALUES
+('Funcionando normalmente', false, 8),
+('Funcionando normalmente', false, 9),
+('Funcionando normalmente', false, 10),
+('Funcionando normalmente', false, 11),
+('Funcionando normalmente', false, 12);
 
 -------------------------------
 -- SENSOR CONTENEDOR METRICAS --
@@ -117,3 +139,14 @@ values
 (3, '2023-06-20 12:00:00', '2023-06-20 12:00:00', true, 7),
 (4, '2023-06-20 22:58:00', '2023-06-20 22:58:00', false, 7),
 (5, '2023-06-21 08:58:00', '2023-06-21 08:58:00', true, 7);
+
+-------------------------------
+-- SENSOR ALUMBRADO METRICAS --
+INSERT INTO sensor_alumbrado
+(id_sensor,tiempo_apagado_encendido, umbral_luminosidad, id_alumbrado)
+VALUES
+(1, 11, 20, 8),
+(2, 13, 80, 9),
+(3, 40, 18, 10),
+(4, 0, 85, 11),
+(5, 11, 16, 12);

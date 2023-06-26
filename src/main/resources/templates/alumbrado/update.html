@@ -1,16 +1,7 @@
-<form action="#" th:action="@{/ubicacion/update}" th:object="${ubicacion}"
-	method="post">
-	<input type="hidden" th:field="*{idUbicacion}" />
-	</p>
-	<p>
-		Nombre: <input type="text" th:field="*{nombre}" />
-	</p>
-	<p>
-		Descripcion: <input type="text" th:field="*{descripcion}" />
-	</p>
-	<input type="submit" value="Edit" />
-</form>
-<form action="#" th:action="@{/ubicacion/delete/{idUbicacion}(idUbicacion=${ubicacion.idUbicacion})}"
-	 onsubmit="return confirm('¿Estás seguro de que quieres eliminar este registro?');" method="post" >
-	<input type="submit" value="delete" />
-</form>
+<form action="#" th:action="@{/dispositivo/alumbrado}">
+<p>*Tipo: Lámpara LED </p>
+<p>*Potencia: 15 vatios</p> 
+<p>*Color de luz: Blanco cálido (3000k)</p> 
+<p>*Material: Aluminio y vidrio</p> 
+<p>*Dimensiones: 30cm de diámetro</p> 
+<p>*Vida útil: 50,000 horas</p> 

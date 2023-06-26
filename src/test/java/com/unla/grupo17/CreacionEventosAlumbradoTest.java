@@ -13,8 +13,7 @@ import com.unla.grupo17.services.IEventoService;
 import com.unla.grupo17.services.ISensorAlumbradoService;
 
 @SpringBootTest
-class CreacionEventosTest {
-
+public class CreacionEventosAlumbradoTest {
 	@Autowired
 	private ISensorAlumbradoService sensorAlumbradoService;
 
@@ -23,7 +22,9 @@ class CreacionEventosTest {
 
 	@Test
 	public void leerMetricas() {
-
+		
+		//Los datos del sensorAlumbrado se ingresa a mano en la base de datos.
+		
 		List<SensorAlumbrado> metricasSensorAlumbrado = sensorAlumbradoService.getAll();
 		for (SensorAlumbrado sensorAlumbrado : metricasSensorAlumbrado) {
 
@@ -55,14 +56,14 @@ class CreacionEventosTest {
 			 */
 			if (sensorAlumbrado.getTiempoApagadoEncendido() == 11
 					|| sensorAlumbrado.getTiempoApagadoEncendido() == 13) {
-				sensorAlumbrado.getAlumbrado().setControlDeAlumbrado("Funcionando Correctamente");
+				sensorAlumbrado.getAlumbrado().setControlDeAlumbrado("Funcionando normalmente");
 			} else {
 				sensorAlumbrado.getAlumbrado().setControlDeAlumbrado("Mantenimiento Requerido");
 			}
 
 			evento.setFechaHoraRegistro(LocalDateTime.now());
 			evento.setDescripcion("Estado de las luces: " + sensorAlumbrado.getAlumbrado().isEstadoLuces()
-					+ " Control de Alumbrado: " + sensorAlumbrado.getAlumbrado().getControlDeAlumbrado());
+					+ " - Control de Alumbrado: " + sensorAlumbrado.getAlumbrado().getControlDeAlumbrado());
 			evento.setDispositivo(sensorAlumbrado.getAlumbrado());
 			eventoService.insertOrUpdate(evento);
 		}
