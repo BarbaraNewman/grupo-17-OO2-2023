@@ -34,6 +34,11 @@ public class ViewRouteHelper {
 	public final static String DISPOSITIVO_PARKING_NEW = "/parking/new";
 	public final static String DISPOSITIVO_PARKING_UPDATE = "/parking/update";
 
+	// SANITARIO
+	public final static String DISPOSITIVO_SANITARIO_INDEX = "/sanitario/index";
+	public final static String DISPOSITIVO_SANITARIO_NEW = "/sanitario/new";
+	public final static String DISPOSITIVO_SANITARIO_UPDATE = "/sanitario/update";
+
 	// USER
 	public final static String USER_LOGIN = "user/login";
 	public final static String USER_LOGOUT = "user/logout";
