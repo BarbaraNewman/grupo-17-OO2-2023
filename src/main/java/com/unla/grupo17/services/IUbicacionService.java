@@ -6,13 +6,13 @@ import com.unla.grupo17.entities.Ubicacion;
 
 public interface IUbicacionService {
 
-	List<Ubicacion> getAll();
+	public abstract List<Ubicacion> getAll();
 
-	public Ubicacion findByIdUbicacion(int idUbicacion);
+	public abstract Ubicacion findByIdUbicacion(int idUbicacion);
 
-	public Ubicacion findByNombre(String nombre);
+	public abstract Ubicacion findByNombre(String nombre);
 
-	public Ubicacion insertOrUpdate(Ubicacion ubicacion);
+	public abstract Ubicacion insertOrUpdate(Ubicacion ubicacion);
 
 	public boolean remove(int idUbicacion);
 
