@@ -15,11 +15,11 @@ public class Sanitario extends Dispositivo {
 	@NotNull(message = "este campo es requerido.")
 	private String nroDeLugar;
 	@NotNull(message = "Este campo es requerido.")
-private int cantPersonas;
+	private int cantPersonas;
 	@Min(value = 0, message = "Numero de labatorios debe ser mayor a 0.")
 
 	private int cantLabatorios;
-	@Min(value = 0, message = "Numero de puertas debe ser mayor a 0.")
+	@NotNull(message = "Este campo es requerido.")
 
 	private int nroPuertas;
 
