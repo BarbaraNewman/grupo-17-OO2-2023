@@ -10,4 +10,5 @@ public interface ISanitarioService {
 
 	public abstract Sanitario findByIdDispositivo(int idDispositivo);
 
+	public Sanitario insertOrUpdate(Sanitario sanitario);
 }
