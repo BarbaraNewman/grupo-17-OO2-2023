@@ -27,4 +27,9 @@ public class SanitarioService implements ISanitarioService {
 		return sanitarioRepository.findByIdDispositivo(idDispositivo);
 	}
 
+	@Override
+	public Sanitario insertOrUpdate(Sanitario sanitario) {
+		return sanitarioRepository.save(sanitario);
+	}
+
 }
