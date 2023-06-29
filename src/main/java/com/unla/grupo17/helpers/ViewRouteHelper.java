@@ -59,4 +59,6 @@ public class ViewRouteHelper {
 	public final static String DISPOSITIVO_PARKING_ROOT = "/dispositivo/parking";
 
 	public final static String SENSOR_CONTENEDOR_ROOT = "/sensor/contenedor";
+	public final static String DISPOSITIVO_SANITARIO_ROOT = "/dispositivo/sanitario";
+
 }
